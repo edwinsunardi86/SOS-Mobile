@@ -7,7 +7,8 @@ class CustomButtonGradient extends StatelessWidget {
 
   final String inputText;
   final String fontFamily;
-  final int fontSize;
+  final double fontSize;
+
   const CustomButtonGradient(
       {required this.inputText,
       required this.fontFamily,
@@ -26,8 +27,9 @@ class CustomButtonGradient extends StatelessWidget {
                 HexColor("#a4161a")
                 //add more colors
               ]),
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: <BoxShadow>[
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 3, color: Colors.white),
+          boxShadow: const <BoxShadow>[
             BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
                 blurRadius: 5) //blur radius of shadow
@@ -42,7 +44,10 @@ class CustomButtonGradient extends StatelessWidget {
             ),
             Text(
               inputText,
-              style: TextStyle(fontFamily: fontFamily, fontSize: 20),
+              style: TextStyle(
+                  fontFamily: fontFamily,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold),
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +56,7 @@ class CustomButtonGradient extends StatelessWidget {
             primary: Colors.transparent,
             onSurface: Colors.transparent,
             shadowColor: Colors.transparent,
-            fixedSize: Size(300, 40)),
+            fixedSize: const Size(250, 40)),
       ),
     );
   }
