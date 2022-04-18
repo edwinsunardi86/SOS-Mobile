@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'custom_button_gradient.dart';
+import 'custom_button.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
+List<String> images = [
+  'assets/images/banner/banner-01.png',
+  'assets/images/banner/banner-03.png',
+  'assets/images/banner/banner-05.png',
+];
+
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  // const MyApp({Key? key}) : super(key: key);
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -39,84 +46,111 @@ class _MyAppState extends State<MyApp> {
                     HexColor('#85182a'),
                   ])),
             ),
-            Column(
-              children: [
+            Container(
+              margin: const EdgeInsets.all(15),
+              child: Column(children: [
                 Flexible(
-                  flex: 2,
+                  flex: 1,
                   child: Column(
                     children: <Widget>[
-                      Expanded(
-                        child: Center(
-                          child: Column(
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                                child: Image(
-                                    width: 165,
-                                    image: AssetImage(
-                                        "assets/images/LOGO-PT-SOS.png")),
-                              ),
-                              Text("MOBILE",
-                                  style: TextStyle(
-                                      letterSpacing: 6,
-                                      color: Colors.white,
-                                      fontFamily: "Squada One",
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w800)),
-                            ],
-                          ),
+                      Center(
+                        child: Column(
+                          children: const [
+                            Image(
+                                width: 110,
+                                image: AssetImage(
+                                    "assets/images/LOGO-PT-SOS.png")),
+                            Text("MOBILE",
+                                style: TextStyle(
+                                    letterSpacing: 6,
+                                    color: Colors.white,
+                                    fontFamily: "Squada One",
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w800)),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
                 Flexible(
-                    flex: 7,
-                    child: Wrap(
-                      spacing:
-                          10, // to apply margin in the main axis of the wrap
-                      runSpacing:
-                          10, // to apply margin in the cross axis of the wrap
-                      children: const <Widget>[
-                        CustomButtonGradient(
-                          inputText: "SOS Karir",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "Absensi",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "OMO",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "Operasional",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "Worker",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "Tambah Karyawan Baru",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        ),
-                        CustomButtonGradient(
-                          inputText: "Ganti Kode Akses",
-                          fontFamily: "Roboto",
-                          fontSize: 17,
-                        )
-                      ],
-                    )),
-              ],
-            )
+                    flex: 6,
+                    child: Center(
+                        child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const <Widget>[
+                          CustomButtonGradient(
+                            inputText: "Karir",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "assets/images/icons/karir.png",
+                          ),
+                          CustomButtonGradient(
+                            inputText: "Absensi",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                          ),
+                          CustomButtonGradient(
+                            inputText: "OMO",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "assets/images/icons/OMO.png",
+                          ),
+                          CustomButtonGradient(
+                            inputText: "Operasional",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "assets/images/icons/operasional.png",
+                          ),
+                          CustomButtonGradient(
+                            inputText: "Worker",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "assets/images/icons/worker.png",
+                          ),
+                          CustomButtonCS(
+                            inputText: "Pendaftaran Karyawan Baru",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "",
+                          ),
+                          CustomButtonCS(
+                            inputText: "Ganti Kode Akses",
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            icon: "",
+                          ),
+                        ],
+                      ),
+                    ))),
+                Flexible(
+                  flex: 2,
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: 200.0,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      autoPlay: true,
+                    ),
+                    items: images.map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width * 1,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Image(
+                                fit: BoxFit.fitWidth,
+                                image: AssetImage(i),
+                              ));
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ]),
+            ),
           ],
         ),
       ),
