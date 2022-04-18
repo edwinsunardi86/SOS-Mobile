@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 List<String> images = [
@@ -14,6 +13,8 @@ List<String> images = [
 ];
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
+
   // const MyApp({Key? key}) : super(key: key);
   @override
   State<MyApp> createState() => _MyAppState();
@@ -23,31 +24,40 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    // HexColor('#E5383B'),
-                    // HexColor('#BA181B'),
-                    // HexColor('#A4161A'),
-                    // HexColor('#BA181B'),
-                    // HexColor('#E5383B'),
+              width: double.infinity,
+              height: double.infinity,
+              // padding: EdgeInsets.all(0),
+              // decoration: BoxDecoration(
+              //     gradient: LinearGradient(
+              //         begin: Alignment.topCenter,
+              //         end: Alignment.bottomCenter,
+              //         colors: [
+              //       // HexColor('#E5383B'),
+              //       // HexColor('#BA181B'),
+              //       // HexColor('#A4161A'),
+              //       // HexColor('#BA181B'),
+              //       // HexColor('#E5383B'),
 
-                    HexColor('#85182a'),
-                    HexColor("#a11d33"),
-                    HexColor("#a71e34"),
-                    HexColor("#a71e34"),
-                    HexColor("#a11d33"),
-                    HexColor('#85182a'),
-                  ])),
+              //       HexColor('#85182a'),
+              //       HexColor("#a11d33"),
+              //       HexColor("#a71e34"),
+              //       HexColor("#a71e34"),
+              //       HexColor("#a11d33"),
+              //       HexColor('#85182a'),
+              //     ])),
+              child: const Image(
+                fit: BoxFit.fill,
+                repeat: ImageRepeat.repeat,
+                image: AssetImage("/images/background/red_grad.png"),
+              ),
             ),
             Container(
-              margin: const EdgeInsets.all(15),
+              // margin: const EdgeInsets.all(15),
               child: Column(children: [
                 Flexible(
                   flex: 1,
@@ -139,10 +149,11 @@ class _MyAppState extends State<MyApp> {
                         builder: (BuildContext context) {
                           return Container(
                               width: MediaQuery.of(context).size.width * 1,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              // margin: const EdgeInsets.symmetric(horizontal: 0),
                               child: Image(
-                                fit: BoxFit.fitWidth,
+                                width: MediaQuery.of(context).size.width * 1,
+                                repeat: ImageRepeat.repeatX,
+                                fit: BoxFit.fill,
                                 image: AssetImage(i),
                               ));
                         },

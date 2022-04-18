@@ -1,3 +1,5 @@
-2022/04/18-15:15:08.377 1fb8 Reusing MANIFEST C:\Users\asus\AppData\Local\Temp\flutter_tools.d1a801b2\flutter_tools_chrome_device.575529f1\Default\Site Characteristics Database/MANIFEST-000001
-2022/04/18-15:15:08.378 1fb8 Recovering log #3
-2022/04/18-15:15:08.378 1fb8 Reusing old log C:\Users\asus\AppData\Local\Temp\flutter_tools.d1a801b2\flutter_tools_chrome_device.575529f1\Default\Site Characteristics Database/000003.log 
+2022/04/18-21:02:45.622 38a4 Log #3: 64 ops saved to Table #4 OK
+2022/04/18-21:02:45.624 38a4 Archiving C:\Users\Edwin\AppData\Local\Temp\flutter_tools.ccb00528\flutter_tools_chrome_device.e978e2ff\Default\Site Characteristics Database/000003.log: OK
+2022/04/18-21:02:45.624 38a4 Table #4: 64 entries OK
+2022/04/18-21:02:45.626 38a4 Archiving C:\Users\Edwin\AppData\Local\Temp\flutter_tools.ccb00528\flutter_tools_chrome_device.e978e2ff\Default\Site Characteristics Database/MANIFEST-000001: OK
+2022/04/18-21:02:45.634 38a4 **** Repaired leveldb C:\Users\Edwin\AppData\Local\Temp\flutter_tools.ccb00528\flutter_tools_chrome_device.e978e2ff\Default\Site Characteristics Database; recovered 1 files; 1715 bytes. Some data may have been lost. ****
