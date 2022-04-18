@@ -21,7 +21,7 @@ class CustomButtonGradient extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  HexColor("#e5383b"),
+                  HexColor("#590d22"),
                   HexColor("#ba181b"),
                   HexColor("#a4161a")
                   //add more colors
@@ -37,7 +37,9 @@ class CustomButtonGradient extends StatelessWidget {
           onPressed: () {},
           child: Row(
             children: [
-              Image(width: 50, height: 50, image: AssetImage(icon)),
+              icon != ""
+                  ? Image(width: 50, height: 50, image: AssetImage(icon))
+                  : const SizedBox.shrink(),
               Container(
                 margin: const EdgeInsets.all(2),
               ),

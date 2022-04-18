@@ -91,6 +91,7 @@ class _MyAppState extends State<MyApp> {
                             inputText: "Absensi",
                             fontFamily: "Roboto",
                             fontSize: 17,
+                            icon: "",
                           ),
                           CustomButtonGradient(
                             inputText: "OMO",
