@@ -1,2 +1,32 @@
-2022/04/18-21:02:46.187 3610 Creating DB C:\Users\Edwin\AppData\Local\Temp\flutter_tools.ccb00528\flutter_tools_chrome_device.e978e2ff\Default\Local Storage\leveldb since it was missing.
-2022/04/18-21:02:46.193 3610 Reusing MANIFEST C:\Users\Edwin\AppData\Local\Temp\flutter_tools.ccb00528\flutter_tools_chrome_device.e978e2ff\Default\Local Storage\leveldb/MANIFEST-000001
+2022/04/21-07:48:15.886 c2c Reusing MANIFEST C:\Users\asus\AppData\Local\Temp\flutter_tools.c41c0092\flutter_tools_chrome_device.fd73e77d\Default\Local Storage\leveldb/MANIFEST-000001
+2022/04/21-07:48:15.890 c2c Recovering log #23
+2022/04/21-07:48:15.892 c2c Reusing old log C:\Users\asus\AppData\Local\Temp\flutter_tools.c41c0092\flutter_tools_chrome_device.fd73e77d\Default\Local Storage\leveldb/000023.log 
+2022/04/21-07:48:15.893 c2c Delete type=0 #3
+2022/04/21-07:48:15.893 c2c Delete type=2 #5
+2022/04/21-07:48:15.893 c2c Delete type=0 #6
+2022/04/21-07:48:15.893 c2c Delete type=2 #7
+2022/04/21-07:48:15.893 c2c Delete type=2 #10
+2022/04/21-07:48:15.893 c2c Delete type=2 #12
+2022/04/21-07:48:15.893 c2c Delete type=0 #13
+2022/04/21-07:48:15.893 c2c Delete type=2 #14
+2022/04/21-07:48:15.893 c2c Delete type=0 #16
+2022/04/21-07:48:15.893 c2c Delete type=2 #18
+2022/04/21-07:48:15.893 c2c Delete type=0 #20
+2022/04/21-08:38:04.723 18b4 Level-0 table #27: started
+2022/04/21-08:38:04.726 18b4 Level-0 table #27: 15683 bytes OK
+2022/04/21-08:38:04.727 18b4 Delete type=0 #23
+2022/04/21-10:25:19.745 356c Level-0 table #29: started
+2022/04/21-10:25:19.755 356c Level-0 table #29: 16670 bytes OK
+2022/04/21-10:25:19.759 356c Delete type=0 #26
+2022/04/21-10:45:30.757 5324 Level-0 table #31: started
+2022/04/21-10:45:30.765 5324 Level-0 table #31: 15300 bytes OK
+2022/04/21-10:45:30.767 5324 Delete type=0 #28
+2022/04/21-10:45:30.767 5324 Compacting 4@0 + 1@1 files
+2022/04/21-10:45:30.769 5324 Generated table #32@0: 233 keys, 37654 bytes
+2022/04/21-10:45:30.769 5324 Compacted 4@0 + 1@1 files => 37654 bytes
+2022/04/21-10:45:30.770 5324 compacted to: files[ 0 1 0 0 0 0 0 ]
+2022/04/21-10:45:30.771 5324 Delete type=2 #21
+2022/04/21-10:45:30.771 5324 Delete type=2 #24
+2022/04/21-10:45:30.771 5324 Delete type=2 #27
+2022/04/21-10:45:30.771 5324 Delete type=2 #29
+2022/04/21-10:45:30.771 5324 Delete type=2 #31

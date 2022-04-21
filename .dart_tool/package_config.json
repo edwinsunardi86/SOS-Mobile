@@ -50,6 +50,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "external_app_launcher",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/external_app_launcher-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0",
       "packageUri": "lib/",
@@ -188,7 +194,7 @@
       "languageVersion": "2.10"
     }
   ],
-  "generated": "2022-04-18T14:06:20.552918Z",
+  "generated": "2022-04-21T09:15:10.491248Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
