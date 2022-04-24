@@ -1,4 +1,4 @@
-#Thu Apr 21 16:25:18 ICT 2022
-base.0=E\:\\project\\sos_mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Fri Apr 22 09:03:06 ICT 2022
+base.0=D\:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

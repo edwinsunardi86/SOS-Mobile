@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/custom_background.dart';
-import 'package:external_app_launcher/external_app_launcher.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -15,7 +14,7 @@ List<String> images = [
 ];
 
 class MenuApps extends StatefulWidget {
-  const MenuApps({Key key}) : super(key: key);
+  const MenuApps({Key? key}) : super(key: key);
 
   // const MenuApps({Key? key}) : super(key: key);
   @override
@@ -76,6 +75,7 @@ class _MenuAppsState extends State<MenuApps> {
                               fontFamily: "Roboto",
                               fontSize: 17,
                               iconImage: "assets/images/icons/absensi.png",
+                              androidPackageName: "",
                             ),
                             CustomButtonGradient(
                               inputText: "OMO",
@@ -88,6 +88,7 @@ class _MenuAppsState extends State<MenuApps> {
                               fontFamily: "Roboto",
                               fontSize: 17,
                               iconImage: "assets/images/icons/operasional.png",
+                              androidPackageName: "tdsolusi.sos.ops",
                             ),
                             CustomButtonGradient(
                               inputText: "Worker",

@@ -50,6 +50,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "email_validator",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/email_validator-1.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
+    },
+    {
       "name": "external_app_launcher",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/external_app_launcher-2.0.2",
       "packageUri": "lib/",
@@ -191,10 +197,10 @@
       "name": "text_style",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.10"
+      "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-21T09:15:10.491248Z",
+  "generated": "2022-04-23T10:58:51.316393Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
