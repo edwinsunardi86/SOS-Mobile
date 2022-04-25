@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:text_style/custom_background.dart';
-import 'package:text_style/custom_form_login.dart';
-import 'package:text_style/custom_logo.dart';
+import 'package:text_style/component/custom_background.dart';
+import 'package:text_style/component/custom_form_login.dart';
+import 'package:text_style/component/custom_logo.dart';
 
 class LoginApp extends StatefulWidget {
   const LoginApp({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class _LoginAppState extends State<LoginApp> {
               ])),
           flex: 1,
         ),
-        Flexible(child: Container(child: CustomFormLogin()), flex: 9),
+        const Flexible(child: CustomFormLogin(), flex: 9),
       ])
     ])));
   }

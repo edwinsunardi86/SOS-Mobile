@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'custom_button.dart';
+import 'package:text_style/factory/fc_menu_apps.dart';
+import 'component/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:text_style/custom_background.dart';
+import 'package:text_style/component/custom_background.dart';
+import 'API/api_menu_apps.dart';
 
 void main() {
+  FcMenuApps? app;
+
   runApp(const MenuApps());
 }
 
@@ -22,8 +26,17 @@ class MenuApps extends StatefulWidget {
 }
 
 class _MenuAppsState extends State<MenuApps> {
+  late Future<FcMenuApps> futureMenuApps;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    ApiMenuApps? app;
+    String output = "";
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       home: Scaffold(
@@ -52,66 +65,112 @@ class _MenuAppsState extends State<MenuApps> {
                     ],
                   ),
                 ),
+                // Flexible(
+                //     flex: 6,
+                //     child: SizedBox(
+                //       height: double.infinity,
+                //       width: double.infinity,
+                //       //color: Colors.yellow,
+                //       child: SingleChildScrollView(
+                //         scrollDirection: Axis.vertical,
+                //         child: Column(
+                //           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //           children: const <Widget>[
+                //             CustomButtonGradient(
+                //               inputText: "Karir",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               iconImage: "assets/images/icons/karir.png",
+                //               androidPackageName: "psi.recruitment.sos",
+                //             ),
+                //             CustomButtonGradient(
+                //               inputText: "Absensi",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               iconImage: "assets/images/icons/absensi.png",
+                //               androidPackageName: "",
+                //             ),
+                //             CustomButtonGradient(
+                //               inputText: "OMO",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               iconImage: "assets/images/icons/OMO.png",
+                //             ),
+                //             CustomButtonGradient(
+                //               inputText: "Operasional",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               iconImage: "assets/images/icons/operasional.png",
+                //               androidPackageName: "tdsolusi.sos.ops",
+                //             ),
+                //             CustomButtonGradient(
+                //               inputText: "Worker",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               iconImage: "assets/images/icons/worker.png",
+                //             ),
+                //             CustomButtonCS(
+                //               inputText: "Pendaftaran Karyawan Baru",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               icon: "",
+                //             ),
+                //             CustomButtonCS(
+                //               inputText: "Ganti Kode Akses",
+                //               fontFamily: "Roboto",
+                //               fontSize: 17,
+                //               icon: "",
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     )),
                 Flexible(
-                    flex: 6,
-                    child: SizedBox(
-                      height: double.infinity,
-                      width: double.infinity,
-                      //color: Colors.yellow,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const <Widget>[
-                            CustomButtonGradient(
-                              inputText: "Karir",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              iconImage: "assets/images/icons/karir.png",
-                              androidPackageName: "psi.recruitment.sos",
-                            ),
-                            CustomButtonGradient(
-                              inputText: "Absensi",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              iconImage: "assets/images/icons/absensi.png",
-                              androidPackageName: "",
-                            ),
-                            CustomButtonGradient(
-                              inputText: "OMO",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              iconImage: "assets/images/icons/OMO.png",
-                            ),
-                            CustomButtonGradient(
-                              inputText: "Operasional",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              iconImage: "assets/images/icons/operasional.png",
-                              androidPackageName: "tdsolusi.sos.ops",
-                            ),
-                            CustomButtonGradient(
-                              inputText: "Worker",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              iconImage: "assets/images/icons/worker.png",
-                            ),
-                            CustomButtonCS(
-                              inputText: "Pendaftaran Karyawan Baru",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              icon: "",
-                            ),
-                            CustomButtonCS(
-                              inputText: "Ganti Kode Akses",
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              icon: "",
-                            ),
-                          ],
-                        ),
-                      ),
-                    )),
+                  child: FutureBuilder(
+                    future: ApiMenuApps.fetchMenuApps(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                      if (snapshot.hasData) {
+                        List<ApiMenuApps>? menuApps = snapshot.data;
+                        return ListView(
+                          children: menuApps!
+                              .map((ApiMenuApps menuApp) => Column(
+                                    children: [
+                                      CustomButtonGradient(
+                                        inputText: menuApp.menuAppsName,
+                                        fontFamily: "Roboto",
+                                        fontSize: 17,
+                                        iconImage: menuApp.logoIcon,
+                                        androidPackageName:
+                                            menuApp.androidAppId,
+                                      )
+                                    ],
+                                  ))
+                              .toList(),
+                        );
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                  // child: Column(
+                  //   children: [
+                  //     Text(output),
+                  //     ElevatedButton(
+                  //         onPressed: () {
+                  //           ApiMenuApps.fetchMenuApps().then((value) {
+                  //             output = "";
+                  //             for (int i = 0; i < value.length; i++) {
+                  //               output = output + value.;
+                  //               setState(() {});
+                  //             }
+                  //           });
+                  //         },
+                  //         child: Text("Submit"))
+                  //   ],
+                  // ),
+                  flex: 6,
+                ),
                 Flexible(
                   flex: 2,
                   //color: Colors.red,

@@ -39,6 +39,8 @@ dependencies:
   carousel_slider: ^4.0.0
   external_app_launcher: ^2.0.2
   email_validator: '^1.0.6'
+  http: ^0.13.4
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
