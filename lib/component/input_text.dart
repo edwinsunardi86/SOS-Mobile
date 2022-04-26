@@ -10,12 +10,14 @@ class InputTextFormValidatorV1 extends StatelessWidget {
   final Icon? icon;
 
   const InputTextFormValidatorV1(
-      {this.verticalM,
+      {Key? key,
+      this.verticalM,
       this.horizontalM,
       this.controller,
       this.textValidatorEmpty,
       this.obscureText,
-      this.icon});
+      this.icon})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

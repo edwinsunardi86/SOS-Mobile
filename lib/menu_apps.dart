@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:text_style/factory/fc_menu_apps.dart';
+import 'package:text_style/API/api_banner_ads.dart';
+
 import 'component/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'API/api_menu_apps.dart';
 
 void main() {
-  FcMenuApps? app;
-
   runApp(const MenuApps());
 }
-
-List<String> images = [
-  'assets/images/banner/banner-01.png',
-  'assets/images/banner/banner-03.png',
-  'assets/images/banner/banner-05.png',
-];
 
 class MenuApps extends StatefulWidget {
   const MenuApps({Key? key}) : super(key: key);
@@ -26,8 +19,6 @@ class MenuApps extends StatefulWidget {
 }
 
 class _MenuAppsState extends State<MenuApps> {
-  late Future<FcMenuApps> futureMenuApps;
-
   @override
   void initState() {
     super.initState();
@@ -35,8 +26,6 @@ class _MenuAppsState extends State<MenuApps> {
 
   @override
   Widget build(BuildContext context) {
-    ApiMenuApps? app;
-    String output = "";
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       home: Scaffold(
@@ -65,66 +54,6 @@ class _MenuAppsState extends State<MenuApps> {
                     ],
                   ),
                 ),
-                // Flexible(
-                //     flex: 6,
-                //     child: SizedBox(
-                //       height: double.infinity,
-                //       width: double.infinity,
-                //       //color: Colors.yellow,
-                //       child: SingleChildScrollView(
-                //         scrollDirection: Axis.vertical,
-                //         child: Column(
-                //           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //           children: const <Widget>[
-                //             CustomButtonGradient(
-                //               inputText: "Karir",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               iconImage: "assets/images/icons/karir.png",
-                //               androidPackageName: "psi.recruitment.sos",
-                //             ),
-                //             CustomButtonGradient(
-                //               inputText: "Absensi",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               iconImage: "assets/images/icons/absensi.png",
-                //               androidPackageName: "",
-                //             ),
-                //             CustomButtonGradient(
-                //               inputText: "OMO",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               iconImage: "assets/images/icons/OMO.png",
-                //             ),
-                //             CustomButtonGradient(
-                //               inputText: "Operasional",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               iconImage: "assets/images/icons/operasional.png",
-                //               androidPackageName: "tdsolusi.sos.ops",
-                //             ),
-                //             CustomButtonGradient(
-                //               inputText: "Worker",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               iconImage: "assets/images/icons/worker.png",
-                //             ),
-                //             CustomButtonCS(
-                //               inputText: "Pendaftaran Karyawan Baru",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               icon: "",
-                //             ),
-                //             CustomButtonCS(
-                //               inputText: "Ganti Kode Akses",
-                //               fontFamily: "Roboto",
-                //               fontSize: 17,
-                //               icon: "",
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     )),
                 Flexible(
                   child: FutureBuilder(
                     future: ApiMenuApps.fetchMenuApps(),
@@ -149,51 +78,82 @@ class _MenuAppsState extends State<MenuApps> {
                               .toList(),
                         );
                       } else {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   ),
-                  // child: Column(
-                  //   children: [
-                  //     Text(output),
-                  //     ElevatedButton(
-                  //         onPressed: () {
-                  //           ApiMenuApps.fetchMenuApps().then((value) {
-                  //             output = "";
-                  //             for (int i = 0; i < value.length; i++) {
-                  //               output = output + value.;
-                  //               setState(() {});
-                  //             }
-                  //           });
-                  //         },
-                  //         child: Text("Submit"))
-                  //   ],
-                  // ),
                   flex: 6,
                 ),
                 Flexible(
-                  flex: 2,
-                  //color: Colors.red,
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: 150.0,
-                      autoPlayInterval: const Duration(seconds: 10),
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                    ),
-                    items: images.map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Image(
-                            width: MediaQuery.of(context).size.width * 1,
-                            fit: BoxFit.fill,
-                            image: AssetImage(i),
+                    child: FutureBuilder(
+                      future: ApiBannerAds.fetchBannerAds(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<ApiBannerAds>> snapshot) {
+                        if (snapshot.hasData) {
+                          List<ApiBannerAds>? apiMenudAds = snapshot.data;
+                          return ListView(
+                            children: apiMenudAds!
+                                .map((ApiBannerAds menuAds) => Column(
+                                      children: [
+                                        CarouselSlider(
+                                          items: apiMenudAds.map((i) {
+                                            return Builder(
+                                              builder: (BuildContext context) {
+                                                return Image(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      1,
+                                                  fit: BoxFit.fill,
+                                                  image: NetworkImage(
+                                                      "http://192.168.3.13:8000/storage/images/banner_ads/" +
+                                                          i.uploadImage),
+                                                );
+                                              },
+                                            );
+                                          }).toList(),
+                                          options: CarouselOptions(
+                                            height: 150.0,
+                                            autoPlayInterval:
+                                                const Duration(seconds: 10),
+                                            autoPlay: true,
+                                            enlargeCenterPage: true,
+                                          ),
+                                        )
+                                      ],
+                                    ))
+                                .toList(),
                           );
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ),
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      },
+                    ),
+                    flex: 2)
+                // Flexible(
+                //   flex: 2,
+                //   //color: Colors.red,
+                //   child: CarouselSlider(
+                //     options: CarouselOptions(
+                //       height: 150.0,
+                //       autoPlayInterval: const Duration(seconds: 10),
+                //       autoPlay: true,
+                //       enlargeCenterPage: true,
+                //     ),
+                //     items: images.map((i) {
+                //       return Builder(
+                //         builder: (BuildContext context) {
+                //           return Image(
+                //             width: MediaQuery.of(context).size.width * 1,
+                //             fit: BoxFit.fill,
+                //             image: AssetImage(i),
+                //           );
+                //         },
+                //       );
+                //     }).toList(),
+                //   ),
+                // ),
               ],
             ),
           ],

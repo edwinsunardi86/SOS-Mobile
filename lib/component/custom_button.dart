@@ -11,11 +11,13 @@ class CustomButtonGradient extends StatelessWidget {
   final String? iconImage;
   final String? androidPackageName;
   const CustomButtonGradient(
-      {required this.inputText,
+      {Key? key,
+      required this.inputText,
       this.fontFamily = "Roboto",
       this.fontSize = 12,
       this.iconImage = "",
-      this.androidPackageName = ""});
+      this.androidPackageName = ""})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class CustomButtonGradient extends StatelessWidget {
                       width: 50,
                       height: 50,
                       image: NetworkImage(
-                          "http://127.0.0.1:8000/storage/images/logo_icon/" +
+                          "http://192.168.3.13:8000/storage/images/logo_icon/" +
                               iconImage!))
                   : const SizedBox.shrink(),
               Container(
@@ -89,10 +91,12 @@ class CustomButtonGradientIconClass extends StatelessWidget {
   final IconData? iconClass;
 
   const CustomButtonGradientIconClass(
-      {required this.inputText,
+      {Key? key,
+      required this.inputText,
       this.fontFamily = "Roboto",
       this.fontSize = 12,
-      this.iconClass = Icons.question_answer});
+      this.iconClass = Icons.question_answer})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,11 +160,12 @@ class CustomButtonCS extends StatelessWidget {
   final String icon;
 
   const CustomButtonCS({
+    Key? key,
     required this.inputText,
     this.fontFamily = "Roboto",
     this.fontSize = 12,
     this.icon = "",
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +216,11 @@ class CustomButtonTransparent extends StatelessWidget {
   final String? fontFamily;
   final double? fontSize;
   const CustomButtonTransparent(
-      {required this.inputText, required this.fontFamily, this.fontSize = 11});
+      {Key? key,
+      required this.inputText,
+      required this.fontFamily,
+      this.fontSize = 11})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -250,11 +259,13 @@ class CustomButtonValidation extends StatelessWidget {
   final String iconImage;
   final String androidPackageName;
   const CustomButtonValidation(
-      {required this.inputText,
+      {Key? key,
+      required this.inputText,
       this.fontFamily = "Roboto",
       this.fontSize = 12,
       this.iconImage = "",
-      this.androidPackageName = ""});
+      this.androidPackageName = ""})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
