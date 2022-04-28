@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:text_style/login.dart';
-import 'package:text_style/menu_apps.dart';
+// import 'package:text_style/menu_apps.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MenuApps(),
+      home: LoginApp(),
     );
   }
 }

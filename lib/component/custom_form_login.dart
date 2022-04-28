@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_style/API/api_menu_login.dart';
 import 'package:text_style/component/input_text.dart';
 import 'package:text_style/component/custom_button.dart';
 
@@ -12,16 +13,10 @@ class CustomFormLogin extends StatefulWidget {
   State<CustomFormLogin> createState() => _CustomFormLoginState();
 }
 
-class _CustomFormLoginState extends State<CustomFormLogin>
-    with TickerProviderStateMixin {
+class _CustomFormLoginState extends State<CustomFormLogin> {
   final _formKey = GlobalKey<FormState>();
   bool submitting = false;
-  void toggleSubmitState() {
-    setState(() {
-      submitting = !submitting;
-    });
-  }
-
+  ApiLogin? apiLogin;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -91,32 +86,54 @@ class _CustomFormLoginState extends State<CustomFormLogin>
                       )),
                   Container(
                       margin: const EdgeInsets.only(top: 35),
-                      child: ElevatedButton(
-                          child: null,
-                          onPressed: () {
-                            toggleSubmitState();
-                            if (_formKey.currentState!.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Row(
-                                  children: const [
-                                    SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 5.0,
-                                      ),
-                                    ),
-                                    Text('Processing Data'),
-                                  ],
-                                )),
-                              );
-                            }
+                      child: Column(
+                        children: [
+                          Text(
+                            (apiLogin != null)
+                                ? apiLogin!.email.toString() +
+                                    ' ' +
+                                    apiLogin!.password.toString()
+                                : "tidak ada data",
+                            style:
+                                const TextStyle(backgroundColor: Colors.green),
+                          ),
+                          ElevatedButton(
+                              child: null,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  // If the form is valid, display a snackbar. In the real world,
+                                  // you'd often call a server or save the information in a database.
+                                  setState(() {
+                                    ApiLogin.authentication(
+                                            emailController.text,
+                                            passwordController.text)
+                                        .then((value) {
+                                      apiLogin ?? "";
 
-                            // Validate returns true if the form is valid, or false otherwise.
-                          })
+                                      apiLogin = value;
+                                    });
+                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Row(
+                                      children: const [
+                                        SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 5.0,
+                                          ),
+                                        ),
+                                        Text('Processing Data'),
+                                      ],
+                                    )),
+                                  );
+                                }
+
+                                // Validate returns true if the form is valid, or false otherwise.
+                              }),
+                        ],
+                      )
                       // child: const CustomButtonValidation(
                       //   inputText: "Login",
                       //   fontFamily: "Roboto",
