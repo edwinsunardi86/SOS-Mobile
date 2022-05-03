@@ -1,25 +1,44 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiLogin {
+  static const ipStatic = "http://192.168.213.234:8000/";
   final String? email;
   final String? password;
-  ApiLogin({required this.email, required this.password});
+  ApiLogin({this.email, this.password});
 
   factory ApiLogin.createPostLogin(Map<String, dynamic> object) {
-    return ApiLogin(email: object['email'], password: object['password']);
+    return ApiLogin(
+        email: object['email']!.toString(),
+        password: object['password']!.toString());
   }
 
-  static Future<ApiLogin> authentication(String email, String password) async {
-    String apiURL = "http://192.168.3.13:8000/api/authentication";
-    var apiResult = await http
-        .post(Uri.parse(apiURL), body: {"email": email, "password": password});
-    if (apiResult.statusCode == 200) {
-      var jsonObject = json.decode(apiResult.body);
-      return ApiLogin.createPostLogin(jsonObject);
-    } else {
-      throw "Unable to retrieve Menu Apps";
-    }
+  Future<http.Response> authentication(String email, String password) async {
+    String apiURL = ipStatic + "api/login";
+
+    http.Response apiResult = await http.post(
+      Uri.parse(apiURL),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: json.encode(<String, dynamic>{
+        "email": email,
+        "password": password,
+      }),
+    );
+    return apiResult;
+  }
+
+  Future<void> setupPreferences(String key, String value) async {
+    SharedPreferences.setMockInitialValues(<String, String>{key: value});
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setString(key, value);
+  }
+
+  Future getPreferences(String key) async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getString(key);
   }
 }

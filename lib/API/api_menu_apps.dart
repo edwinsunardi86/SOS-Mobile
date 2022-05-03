@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiMenuApps {
+  static const ipStatic = "http://192.168.213.234:8000/";
   final String menuAppsName;
   final String logoIcon;
   final String androidAppId;
@@ -18,7 +19,7 @@ class ApiMenuApps {
         androidAppId: json['android_app_id'] ?? "");
   }
   static Future<List<ApiMenuApps>> fetchMenuApps() async {
-    String apiURL = "http://192.168.3.13:8000/api/menu_apps";
+    String apiURL = ipStatic + "api/menu_apps";
     var response = await http.get(Uri.parse(apiURL));
 
     if (response.statusCode == 200) {

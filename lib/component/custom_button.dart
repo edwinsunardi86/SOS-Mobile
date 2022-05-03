@@ -10,14 +10,15 @@ class CustomButtonGradient extends StatelessWidget {
   final double? fontSize;
   final String? iconImage;
   final String? androidPackageName;
-  const CustomButtonGradient(
-      {Key? key,
-      required this.inputText,
-      this.fontFamily = "Roboto",
-      this.fontSize = 12,
-      this.iconImage = "",
-      this.androidPackageName = ""})
-      : super(key: key);
+
+  const CustomButtonGradient({
+    Key? key,
+    required this.inputText,
+    this.fontFamily = "Roboto",
+    this.fontSize = 12,
+    this.iconImage = "",
+    this.androidPackageName = "",
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class CustomButtonGradient extends StatelessWidget {
                       width: 50,
                       height: 50,
                       image: NetworkImage(
-                          "http://192.168.3.13:8000/storage/images/logo_icon/" +
+                          "http://192.168.213.234:8000/storage/images/logo_icon/" +
                               iconImage!))
                   : const SizedBox.shrink(),
               Container(
@@ -90,13 +91,13 @@ class CustomButtonGradientIconClass extends StatelessWidget {
   final double? fontSize;
   final IconData? iconClass;
 
-  const CustomButtonGradientIconClass(
-      {Key? key,
-      required this.inputText,
-      this.fontFamily = "Roboto",
-      this.fontSize = 12,
-      this.iconClass = Icons.question_answer})
-      : super(key: key);
+  const CustomButtonGradientIconClass({
+    Key? key,
+    required this.inputText,
+    this.fontFamily = "Roboto",
+    this.fontSize = 12,
+    this.iconClass = Icons.question_answer,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -209,67 +210,24 @@ class CustomButtonCS extends StatelessWidget {
   }
 }
 
-class CustomButtonTransparent extends StatelessWidget {
+class CustomButtonAuthentication extends StatelessWidget {
   // const CustomButton({ Key? key }) : super(key: key);
 
   final String inputText;
   final String? fontFamily;
   final double? fontSize;
-  const CustomButtonTransparent(
-      {Key? key,
-      required this.inputText,
-      required this.fontFamily,
-      this.fontSize = 11})
-      : super(key: key);
+  final IconData? iconClass;
+
+  const CustomButtonAuthentication({
+    Key? key,
+    required this.inputText,
+    this.fontFamily,
+    this.fontSize,
+    this.iconClass,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.all(7),
-        child: Align(
-          alignment: Alignment.topRight,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              inputText,
-              style: TextStyle(
-                  fontFamily: fontFamily,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  shadows: const <Shadow>[
-                    Shadow(color: Colors.black, offset: Offset(3.0, 2.0))
-                  ]),
-            ),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.transparent,
-                onSurface: Colors.transparent,
-                shadowColor: Colors.transparent,
-                maximumSize: const Size(126, 36)),
-          ),
-        ));
-  }
-}
-
-class CustomButtonValidation extends StatelessWidget {
-  // const CustomButton({ Key? key }) : super(key: key);
-
-  final String inputText;
-  final String fontFamily;
-  final double fontSize;
-  final String iconImage;
-  final String androidPackageName;
-  const CustomButtonValidation(
-      {Key? key,
-      required this.inputText,
-      this.fontFamily = "Roboto",
-      this.fontSize = 12,
-      this.iconImage = "",
-      this.androidPackageName = ""})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Container(
       margin: const EdgeInsets.all(7),
       child: DecoratedBox(
@@ -287,33 +245,16 @@ class CustomButtonValidation extends StatelessWidget {
             border: Border.all(width: 3, color: Colors.white),
             boxShadow: const <BoxShadow>[
               BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
-                offset: Offset(3.0, 2.0),
-                blurRadius: 5,
-              ) //blur radius of shadow
+                  color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
+                  blurRadius: 5,
+                  offset: Offset(3.0, 2.0),
+                  spreadRadius: 3) //blur radius of shadow
             ]),
         child: ElevatedButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              // If the form is valid, display a snackbar. In the real world,
-              // you'd often call a server or save the information in a database.
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   const SnackBar(content: Text('Processing Data')),
-              // );
-              double value = 0;
-              CircularProgressIndicator(
-                backgroundColor: Colors.grey,
-                color: Colors.green,
-                strokeWidth: 5,
-                value: value,
-              );
-            }
-          },
+          onPressed: () {},
           child: Row(
             children: [
-              iconImage != ""
-                  ? Image(width: 50, height: 50, image: AssetImage(iconImage))
-                  : const SizedBox.shrink(),
+              Icon(iconClass),
               Container(
                 margin: const EdgeInsets.all(2),
               ),

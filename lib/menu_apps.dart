@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:text_style/API/api_banner_ads.dart';
-
+import 'package:text_style/component/sidebar.dart';
 import 'component/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'API/api_menu_apps.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -19,6 +20,8 @@ class MenuApps extends StatefulWidget {
 }
 
 class _MenuAppsState extends State<MenuApps> {
+  late SharedPreferences? getData;
+  late String getEmail;
   @override
   void initState() {
     super.initState();
@@ -29,6 +32,12 @@ class _MenuAppsState extends State<MenuApps> {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       home: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
+        drawer: const Sidebar(),
         body: Stack(
           children: [
             //color: Colors.blue,
@@ -106,7 +115,7 @@ class _MenuAppsState extends State<MenuApps> {
                                                       1,
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
-                                                      "http://192.168.3.13:8000/storage/images/banner_ads/" +
+                                                      "http://192.168.87.234:8000/storage/images/banner_ads/" +
                                                           i.uploadImage),
                                                 );
                                               },

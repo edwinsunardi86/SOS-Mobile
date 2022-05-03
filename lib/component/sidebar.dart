@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:text_style/login.dart';
+
+class Sidebar extends StatefulWidget {
+  const Sidebar({Key? key}) : super(key: key);
+
+  @override
+  State<Sidebar> createState() => _SidebarState();
+}
+
+class _SidebarState extends State<Sidebar> {
+  late SharedPreferences logindata;
+  late String? username;
+  @override
+  void initState() {
+    super.initState();
+    initial();
+  }
+
+  void initial() async {
+    logindata = await SharedPreferences.getInstance();
+    setState(() {
+      username = logindata.getString('username');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: const Color.fromARGB(255, 37, 0, 0),
+      child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  Color.fromARGB(255, 99, 0, 0),
+                  Color.fromARGB(255, 123, 0, 0),
+                  Color.fromARGB(255, 149, 0, 0)
+                ])),
+            accountName: const Text("Anonymous"),
+            accountEmail: const Text("anonymous@example.com"),
+            currentAccountPicture: CircleAvatar(
+              child: ClipOval(
+                child: Image.network(
+                  "https://cdn.dribbble.com/users/2364329/screenshots/4759681/dribbble-11.jpg",
+                  fit: BoxFit.cover,
+                  width: 90,
+                  height: 90,
+                ),
+              ),
+            ),
+          ),
+          ListTile(
+            tileColor: const Color.fromARGB(255, 127, 0, 0),
+            leading: const Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Favorites',
+              style: TextStyle(color: Colors.white, fontFamily: "Roboto"),
+            ),
+            onTap: () => () {},
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          ListTile(
+            tileColor: const Color.fromARGB(255, 127, 0, 0),
+            leading: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.white, fontFamily: "Roboto"),
+            ),
+            onTap: () async {
+              await logindata.setBool('login', true);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const LoginApp()));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

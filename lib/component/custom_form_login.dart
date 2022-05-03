@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:text_style/API/api_menu_login.dart';
 import 'package:text_style/component/input_text.dart';
-import 'package:text_style/component/custom_button.dart';
+import 'package:text_style/main.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:text_style/menu_apps.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -14,9 +17,36 @@ class CustomFormLogin extends StatefulWidget {
 }
 
 class _CustomFormLoginState extends State<CustomFormLogin> {
+  ApiLogin apiLogin = ApiLogin();
   final _formKey = GlobalKey<FormState>();
-  bool submitting = false;
-  ApiLogin? apiLogin;
+  SharedPreferences? logindata;
+  late bool newuser;
+  late SharedPreferences? getData;
+  late String getEmail;
+  @override
+  void initState() {
+    super.initState();
+    checkIfAlreadyLogin();
+  }
+
+  void checkIfAlreadyLogin() async {
+    logindata = await SharedPreferences.getInstance();
+    newuser = (logindata!.getBool('login') ?? true);
+
+    if (newuser == false) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MenuApps()));
+    }
+  }
+
+  //@override
+  // void dispose() {
+  //   // Clean up the controller when the widget is disposed.
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -52,7 +82,6 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                   const SizedBox(
                     height: 20,
                   ),
-
                   Container(
                     margin: const EdgeInsets.only(top: 20),
                     child: const Align(
@@ -77,109 +106,173 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                     controller: passwordController,
                     obscureText: true,
                   ),
-                  Container(
-                      margin: const EdgeInsets.only(top: 0),
-                      child: const CustomButtonTransparent(
-                        fontFamily: "Roboto",
-                        fontSize: 12,
-                        inputText: "Lupa Password?",
-                      )),
-                  Container(
-                      margin: const EdgeInsets.only(top: 35),
-                      child: Column(
-                        children: [
-                          Text(
-                            (apiLogin != null)
-                                ? apiLogin!.email.toString() +
-                                    ' ' +
-                                    apiLogin!.password.toString()
-                                : "tidak ada data",
-                            style:
-                                const TextStyle(backgroundColor: Colors.green),
-                          ),
-                          ElevatedButton(
-                              child: null,
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-                                  setState(() {
-                                    ApiLogin.authentication(
-                                            emailController.text,
-                                            passwordController.text)
-                                        .then((value) {
-                                      apiLogin ?? "";
-
-                                      apiLogin = value;
-                                    });
-                                  });
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Row(
-                                      children: const [
-                                        SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 5.0,
-                                          ),
-                                        ),
-                                        Text('Processing Data'),
-                                      ],
-                                    )),
-                                  );
-                                }
-
-                                // Validate returns true if the form is valid, or false otherwise.
-                              }),
-                        ],
-                      )
-                      // child: const CustomButtonValidation(
-                      //   inputText: "Login",
-                      //   fontFamily: "Roboto",
-                      //   fontSize: 17,
-                      //   iconClass: Icon(Icons.login),
-                      // ),
+                  SizedBox(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: const Text(
+                          "Lupa Password",
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return const MyApp();
+                          }));
+                        },
                       ),
+                    ],
+                  )),
                   Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: const CustomButtonGradientIconClass(
-                      inputText: "Daftar",
-                      fontFamily: "Roboto",
-                      fontSize: 17,
-                      iconClass: Icons.list,
+                    decoration: BoxDecoration(
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                              color: Colors.black,
+                              blurStyle: BlurStyle.normal,
+                              offset: Offset(3.0, 2.0),
+                              blurRadius: 5)
+                        ],
+                        border: Border.all(width: 3, color: Colors.white),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                        gradient: LinearGradient(
+                            colors: [
+                              HexColor("#590d22"),
+                              HexColor("#ba181b"),
+                              HexColor("#a4161a")
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        final snackBar = SnackBar(
+                            content: Row(
+                          children: const [
+                            CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("On processing"),
+                          ],
+                        ));
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          try {
+                            var req = await apiLogin.authentication(
+                                emailController.text, passwordController.text);
+                            if (req.statusCode == 200) {
+                              // memberSet!.add({'email': emailController.text});
+                              // await apiLogin.setupPreferences(
+                              //     'email', emailController.text);
+                              // String email = emailController.text;
+
+                              logindata!.setBool('login', false);
+                              logindata!
+                                  .setString('email', emailController.text);
+
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    Future.delayed(const Duration(seconds: 5),
+                                        () {
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MenuApps()));
+                                    });
+                                    return const AlertDialog(
+                                      title: Text("Login successful"),
+                                    );
+                                  });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    Future.delayed(const Duration(seconds: 5),
+                                        () {
+                                      Navigator.of(context).pop(true);
+                                    });
+                                    return const AlertDialog(
+                                      title: Text("Your email/password wrong"),
+                                    );
+                                  });
+                            }
+                          } on Exception {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  Future.delayed(const Duration(seconds: 5),
+                                      () {
+                                    Navigator.of(context).pop(true);
+                                  });
+                                  return const AlertDialog(
+                                    title: Text("Login failed"),
+                                  );
+                                });
+                          }
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.login,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Submit",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          )
+                        ],
+                      ),
+                      style: ButtonStyle(
+                          fixedSize:
+                              MaterialStateProperty.all(const Size(250, 50)),
+                          alignment: Alignment.center,
+                          shadowColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          )),
                     ),
-                  ),
-                  // const SizedBox(
-                  //     // margin: const EdgeInsets.only(top: 0),
-                  //     child: CustomButtonTransparent(
-                  //   fontFamily: "Roboto",
-                  //   fontSize: 12,
-                  //   inputText: "Lupa Password?",
-                  // )),
-                  // Container(
-                  //   margin: const EdgeInsets.only(top: 35),
-                  //   child: const CustomButtonGradientIconClass(
-                  //     inputText: "Login",
-                  //     fontFamily: "Roboto",
-                  //     fontSize: 17,
-                  //     iconClass: Icon(Icons.login),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   margin: const EdgeInsets.only(top: 10),
-                  //   child: const CustomButtonGradientIconClass(
-                  //     inputText: "Daftar",
-                  //     fontFamily: "Roboto",
-                  //     fontSize: 17,
-                  //     iconClass: Icon(Icons.add),
-                  //   ),
-                  // ),
+                  )
                 ],
               ),
             ),
             flex: 9)
       ]),
     );
+  }
+
+  static Route<Object?> _dialogBuilder(
+      BuildContext context, Object? arguments) {
+    return DialogRoute<void>(
+        context: context,
+        builder: (BuildContext context) {
+          Future.delayed(const Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => const MenuApps()));
+          });
+          return const AlertDialog(
+            title: Text('Warning!', style: TextStyle(fontFamily: "Roboto")),
+            content: Text(
+              'Login Successful',
+              style: TextStyle(fontFamily: "Roboto"),
+            ),
+          );
+        });
   }
 }

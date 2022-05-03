@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'package:text_style/component/custom_form_login.dart';
 import 'package:text_style/component/custom_logo.dart';
+import 'package:flutter/services.dart';
 
 class LoginApp extends StatefulWidget {
   const LoginApp({Key? key}) : super(key: key);
@@ -13,9 +14,13 @@ class LoginApp extends StatefulWidget {
 class _LoginAppState extends State<LoginApp> {
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     return MaterialApp(
         home: Scaffold(
-            resizeToAvoidBottomInset: false,
             body: Stack(children: [
               const CustomBackground(),
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -50,7 +55,7 @@ class _LoginAppState extends State<LoginApp> {
                       ])),
                   flex: 1,
                 ),
-                const Flexible(child: CustomFormLogin(), flex: 9),
+                const Flexible(child: CustomFormLogin(), flex: 6),
               ])
             ])));
   }
