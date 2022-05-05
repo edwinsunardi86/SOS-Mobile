@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:text_style/API/api_banner_ads.dart';
 import 'package:text_style/component/sidebar.dart';
@@ -23,6 +24,7 @@ class MenuApps extends StatefulWidget {
 class _MenuAppsState extends State<MenuApps> {
   late SharedPreferences? getData;
   late String getEmail;
+  List<ApiBannerAds>? apiMenudAds;
   @override
   void initState() {
     super.initState();
@@ -82,7 +84,7 @@ class _MenuAppsState extends State<MenuApps> {
                                         fontSize: 17,
                                         iconImage: menuApp.logoIcon,
                                         androidPackageName:
-                                            menuApp.androidAppId!,
+                                            menuApp.androidAppId,
                                       )
                                     ],
                                   ))
@@ -103,34 +105,46 @@ class _MenuAppsState extends State<MenuApps> {
                         if (snapshot.hasData) {
                           List<ApiBannerAds>? apiMenudAds = snapshot.data;
                           return ListView(
+                            reverse: true,
+                            shrinkWrap: true,
                             children: apiMenudAds!
                                 .map((ApiBannerAds menuAds) => Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         CarouselSlider(
                                           items: apiMenudAds.map((i) {
                                             return Builder(
                                               builder: (BuildContext context) {
-                                                return Image(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      1,
-                                                  fit: BoxFit.fill,
-                                                  image: NetworkImage(
-                                                      getDomainIpStatic
-                                                              .ipStatic +
-                                                          "storage/images/banner_ads/" +
-                                                          i.uploadImage),
+                                                return Container(
+                                                  margin: const EdgeInsets.only(
+                                                      bottom: 10, top: 10),
+                                                  child: Image(
+                                                    fit: BoxFit.fill,
+                                                    image: CachedNetworkImageProvider(
+                                                        getDomainIpStatic
+                                                                .ipStatic +
+                                                            "storage/images/banner_ads/" +
+                                                            i.uploadImage),
+                                                  ),
                                                 );
                                               },
                                             );
                                           }).toList(),
                                           options: CarouselOptions(
-                                            height: 150.0,
-                                            autoPlayInterval:
-                                                const Duration(seconds: 10),
+                                            aspectRatio: 16 / 7,
+                                            viewportFraction: 0.7,
+                                            initialPage: 0,
+                                            enableInfiniteScroll: true,
+                                            reverse: false,
                                             autoPlay: true,
+                                            autoPlayInterval:
+                                                const Duration(seconds: 5),
+                                            autoPlayAnimationDuration:
+                                                const Duration(
+                                                    milliseconds: 5000),
                                             enlargeCenterPage: true,
+                                            // scrollDirection: Axis.horizontal,
                                           ),
                                         )
                                       ],
@@ -144,6 +158,7 @@ class _MenuAppsState extends State<MenuApps> {
                       },
                     ),
                     flex: 2)
+
                 // Flexible(
                 //   flex: 2,
                 //   //color: Colors.red,

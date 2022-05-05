@@ -2,6 +2,7 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:text_style/get_domain_ip.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomButtonGradient extends StatelessWidget {
   // const CustomButton({ Key? key }) : super(key: key);
@@ -18,7 +19,7 @@ class CustomButtonGradient extends StatelessWidget {
     this.fontFamily = "Roboto",
     this.fontSize = 12,
     this.iconImage,
-    required this.androidPackageName,
+    this.androidPackageName,
   }) : super(key: key);
 
   @override
@@ -48,8 +49,10 @@ class CustomButtonGradient extends StatelessWidget {
             ]),
         child: ElevatedButton(
           onPressed: () async {
-            await LaunchApp.openApp(
-                androidPackageName: androidPackageName, openStore: false);
+            (androidPackageName != null)
+                ? await LaunchApp.openApp(
+                    androidPackageName: androidPackageName, openStore: false)
+                : "";
           },
           child: Row(
             children: [
@@ -57,9 +60,10 @@ class CustomButtonGradient extends StatelessWidget {
                   ? Image(
                       width: 50,
                       height: 50,
-                      image: NetworkImage(getDomainIpStatic.ipStatic +
-                          "storage/images/logo_icon/" +
-                          iconImage!))
+                      image: CachedNetworkImageProvider(
+                          getDomainIpStatic.ipStatic +
+                              "storage/images/logo_icon/" +
+                              iconImage!))
                   : const SizedBox.shrink(),
               Container(
                 margin: const EdgeInsets.all(2),
@@ -79,7 +83,7 @@ class CustomButtonGradient extends StatelessWidget {
               primary: Colors.transparent,
               onSurface: Colors.transparent,
               shadowColor: Colors.transparent,
-              fixedSize: const Size(250, 50)),
+              fixedSize: const Size(300, 50)),
         ),
       ),
     );
@@ -155,7 +159,7 @@ class CustomButtonGradientIconClass extends StatelessWidget {
   }
 }
 
-class CustomButtonCS extends StatelessWidget {
+class CustomButtonWhite extends StatelessWidget {
   // const CustomButton({ Key? key }) : super(key: key);
 
   final String inputText;
@@ -163,7 +167,7 @@ class CustomButtonCS extends StatelessWidget {
   final double fontSize;
   final String icon;
 
-  const CustomButtonCS({
+  const CustomButtonWhite({
     Key? key,
     required this.inputText,
     this.fontFamily = "Roboto",

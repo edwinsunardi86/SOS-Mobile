@@ -16,7 +16,7 @@ class ApiMenuApps {
     return ApiMenuApps(
         menuAppsName: json['menu_apps_name'],
         logoIcon: json['logo_icon'] ?? "",
-        androidAppId: json['android_app_id'] ?? "");
+        androidAppId: json['android_app_id']);
   }
   static Future<List<ApiMenuApps>> fetchMenuApps() async {
     final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
