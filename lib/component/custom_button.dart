@@ -1,6 +1,7 @@
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:text_style/get_domain_ip.dart';
 
 class CustomButtonGradient extends StatelessWidget {
   // const CustomButton({ Key? key }) : super(key: key);
@@ -16,12 +17,13 @@ class CustomButtonGradient extends StatelessWidget {
     required this.inputText,
     this.fontFamily = "Roboto",
     this.fontSize = 12,
-    this.iconImage = "",
-    this.androidPackageName = "",
+    this.iconImage,
+    required this.androidPackageName,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
     return Container(
       margin: const EdgeInsets.all(7),
       child: DecoratedBox(
@@ -55,9 +57,9 @@ class CustomButtonGradient extends StatelessWidget {
                   ? Image(
                       width: 50,
                       height: 50,
-                      image: NetworkImage(
-                          "http://192.168.213.234:8000/storage/images/logo_icon/" +
-                              iconImage!))
+                      image: NetworkImage(getDomainIpStatic.ipStatic +
+                          "storage/images/logo_icon/" +
+                          iconImage!))
                   : const SizedBox.shrink(),
               Container(
                 margin: const EdgeInsets.all(2),
@@ -73,6 +75,7 @@ class CustomButtonGradient extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
           ),
           style: ElevatedButton.styleFrom(
+              elevation: 20,
               primary: Colors.transparent,
               onSurface: Colors.transparent,
               shadowColor: Colors.transparent,

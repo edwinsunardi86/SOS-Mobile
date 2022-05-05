@@ -256,23 +256,23 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
     );
   }
 
-  static Route<Object?> _dialogBuilder(
-      BuildContext context, Object? arguments) {
-    return DialogRoute<void>(
-        context: context,
-        builder: (BuildContext context) {
-          Future.delayed(const Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => const MenuApps()));
-          });
-          return const AlertDialog(
-            title: Text('Warning!', style: TextStyle(fontFamily: "Roboto")),
-            content: Text(
-              'Login Successful',
-              style: TextStyle(fontFamily: "Roboto"),
-            ),
-          );
-        });
-  }
+  // static Route<Object?> _dialogBuilder(
+  //     BuildContext context, Object? arguments) {
+  //   return DialogRoute<void>(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         Future.delayed(const Duration(seconds: 2), () {
+  //           Navigator.of(context).pop(true);
+  //           Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //               builder: (BuildContext context) => const MenuApps()));
+  //         });
+  //         return const AlertDialog(
+  //           title: Text('Warning!', style: TextStyle(fontFamily: "Roboto")),
+  //           content: Text(
+  //             'Login Successful',
+  //             style: TextStyle(fontFamily: "Roboto"),
+  //           ),
+  //         );
+  //       });
+  // }
 }

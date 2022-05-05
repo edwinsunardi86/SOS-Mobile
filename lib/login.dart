@@ -21,6 +21,7 @@ class _LoginAppState extends State<LoginApp> {
     ]);
     return MaterialApp(
         home: Scaffold(
+            resizeToAvoidBottomInset: false,
             body: Stack(children: [
               const CustomBackground(),
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [

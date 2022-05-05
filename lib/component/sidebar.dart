@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:text_style/API/api_menu_login.dart';
 import 'package:text_style/login.dart';
 
 class Sidebar extends StatefulWidget {
@@ -11,7 +12,8 @@ class Sidebar extends StatefulWidget {
 
 class _SidebarState extends State<Sidebar> {
   late SharedPreferences logindata;
-  late String? username;
+  String? email;
+  ApiLogin? apiLogin;
   @override
   void initState() {
     super.initState();
@@ -21,7 +23,11 @@ class _SidebarState extends State<Sidebar> {
   void initial() async {
     logindata = await SharedPreferences.getInstance();
     setState(() {
-      username = logindata.getString('username');
+      email = logindata.getString('email') ?? "";
+      ApiLogin.getFieldUser(email.toString()).then((value) {
+        apiLogin = value;
+        setState(() {});
+      });
     });
   }
 
@@ -41,8 +47,8 @@ class _SidebarState extends State<Sidebar> {
                   Color.fromARGB(255, 123, 0, 0),
                   Color.fromARGB(255, 149, 0, 0)
                 ])),
-            accountName: const Text("Anonymous"),
-            accountEmail: const Text("anonymous@example.com"),
+            accountName: Text(apiLogin?.fullname ?? ""),
+            accountEmail: Text(email.toString()),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(

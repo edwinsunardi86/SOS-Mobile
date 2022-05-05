@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'API/api_menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:text_style/get_domain_ip.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -29,6 +30,7 @@ class _MenuAppsState extends State<MenuApps> {
 
   @override
   Widget build(BuildContext context) {
+    GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       home: Scaffold(
@@ -80,7 +82,7 @@ class _MenuAppsState extends State<MenuApps> {
                                         fontSize: 17,
                                         iconImage: menuApp.logoIcon,
                                         androidPackageName:
-                                            menuApp.androidAppId,
+                                            menuApp.androidAppId!,
                                       )
                                     ],
                                   ))
@@ -115,7 +117,9 @@ class _MenuAppsState extends State<MenuApps> {
                                                       1,
                                                   fit: BoxFit.fill,
                                                   image: NetworkImage(
-                                                      "http://192.168.87.234:8000/storage/images/banner_ads/" +
+                                                      getDomainIpStatic
+                                                              .ipStatic +
+                                                          "storage/images/banner_ads/" +
                                                           i.uploadImage),
                                                 );
                                               },

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:text_style/get_domain_ip.dart';
 
 class ApiMenuApps {
-  static const ipStatic = "http://192.168.213.234:8000/";
   final String menuAppsName;
   final String logoIcon;
-  final String androidAppId;
+  final String? androidAppId;
 
   ApiMenuApps(
       {required this.menuAppsName,
@@ -19,7 +19,8 @@ class ApiMenuApps {
         androidAppId: json['android_app_id'] ?? "");
   }
   static Future<List<ApiMenuApps>> fetchMenuApps() async {
-    String apiURL = ipStatic + "api/menu_apps";
+    final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+    String apiURL = getDomainIpStatic.ipStatic + "api/menu_apps";
     var response = await http.get(Uri.parse(apiURL));
 
     if (response.statusCode == 200) {

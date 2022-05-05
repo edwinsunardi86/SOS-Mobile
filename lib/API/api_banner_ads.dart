@@ -1,9 +1,8 @@
 import 'dart:convert';
-
+import 'package:text_style/get_domain_ip.dart';
 import 'package:http/http.dart' as http;
 
 class ApiBannerAds {
-  static const ipStatic = "http://192.168.213.234:8000/";
   final String title;
   final String uploadImage;
   final int isActive;
@@ -24,7 +23,8 @@ class ApiBannerAds {
   }
 
   static Future<List<ApiBannerAds>> fetchBannerAds() async {
-    String urlApi = ipStatic + "api/banner_ads";
+    GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+    String urlApi = getDomainIpStatic.ipStatic + "api/banner_ads";
     var response = await http.get(Uri.parse(urlApi));
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
