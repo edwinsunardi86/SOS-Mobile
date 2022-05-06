@@ -4588,9 +4588,9 @@ kotlin.sequences.GeneratorSequence
 kotlin.sequences.SequencesKt__SequenceBuilderKt$sequence$$inlined$Sequence$1
 androidx.customview.widget.ExploreByTouchHelper
 androidx.annotation.CheckResult
-io.flutter.embedding.engine.systemchannels.PlatformViewsChannel:
-    private static final java.lang.String TAG
 io.flutter.embedding.engine.systemchannels.PlatformChannel:
+    private static final java.lang.String TAG
+io.flutter.embedding.engine.systemchannels.PlatformViewsChannel:
     private static final java.lang.String TAG
 kotlinx.coroutines.flow.FlowKt__ReduceKt$single$$inlined$collect$1
 kotlin.Suppress
@@ -6273,8 +6273,8 @@ com.google.common.util.concurrent.MoreExecutors$ScheduledListeningDecorator$Neve
 androidx.arch.core.executor.DefaultTaskExecutor$1
 androidx.core.util.Pools$SimplePool
 kotlin.collections.ArraysKt___ArraysKt$withIndex$8
-androidx.core.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl
 androidx.core.text.util.LinkifyCompat
+androidx.core.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl
 androidx.lifecycle.livedata.core.R
 androidx.savedstate.Recreator$SavedStateProvider
 kotlinx.coroutines.NonCancellable
@@ -6655,8 +6655,8 @@ androidx.core.widget.PopupWindowCompat
 androidx.fragment.app.FragmentTransitionImpl$1
 io.flutter.app.FlutterActivityDelegate
 androidx.core.content.pm.PermissionInfoCompat
-com.google.common.graph.AbstractGraph
 com.google.common.graph.Graphs$NodeVisitState
+com.google.common.graph.AbstractGraph
 com.example.sos_mobile.R$id
 kotlin.io.SerializableKt
 androidx.core.view.ViewCompat$ScrollIndicators
@@ -9106,8 +9106,8 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineBroadca
 androidx.core.app.NotificationCompat$Action$WearableExtender
 kotlinx.coroutines.channels.AbstractChannel$receiveCatching$1
 com.google.common.collect.TreeTraverser$PreOrderIterator
-com.google.common.base.internal.Finalizer
 androidx.core.view.ViewCompat$Api21Impl
+com.google.common.base.internal.Finalizer
 kotlinx.coroutines.sync.MutexImpl$LockWaiter
 com.google.common.collect.Tables$TransformedTable$2
 kotlinx.coroutines.flow.internal.FlowCoroutine
@@ -9766,8 +9766,8 @@ com.google.common.reflect.TypeResolver$TypeTable$1
 androidx.core.view.WindowInsetsAnimationCompat$Impl30$ProxyCallback
 kotlinx.coroutines.flow.FlowKt__ErrorsKt
 com.google.common.util.concurrent.ListenerCallQueue$PerListenerQueue
-kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$lambda-1$$inlined$collect$1
 kotlinx.coroutines.channels.TickerChannelsKt$ticker$3$WhenMappings
+kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$lambda-1$$inlined$collect$1
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$toCollection$1
 com.google.common.util.concurrent.ForwardingListeningExecutorService
 io.flutter.plugin.editing.InputConnectionAdaptor:

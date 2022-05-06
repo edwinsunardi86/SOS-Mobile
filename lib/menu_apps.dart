@@ -68,32 +68,41 @@ class _MenuAppsState extends State<MenuApps> {
                   ),
                 ),
                 Flexible(
-                  child: FutureBuilder(
-                    future: ApiMenuApps.fetchMenuApps(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<List<ApiMenuApps>> snapshot) {
-                      if (snapshot.hasData) {
-                        List<ApiMenuApps>? menuApps = snapshot.data;
-                        return ListView(
-                          children: menuApps!
-                              .map((ApiMenuApps menuApp) => Column(
-                                    children: [
-                                      CustomButtonGradient(
-                                        inputText: menuApp.menuAppsName,
-                                        fontFamily: "Roboto",
-                                        fontSize: 17,
-                                        iconImage: menuApp.logoIcon,
-                                        androidPackageName:
-                                            menuApp.androidAppId,
-                                      )
-                                    ],
-                                  ))
-                              .toList(),
-                        );
-                      } else {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.,
+                    children: [
+                      FutureBuilder(
+                        future: ApiMenuApps.fetchMenuApps(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                          if (snapshot.hasData) {
+                            List<ApiMenuApps>? menuApps = snapshot.data;
+                            return Container(
+                              color: Colors.blue,
+                              alignment: Alignment.topLeft,
+                              child: ListView(
+                                // reverse: true,
+                                shrinkWrap: false,
+                                children: menuApps!
+                                    .map((ApiMenuApps menuApp) =>
+                                        CustomButtonGradient(
+                                          inputText: menuApp.menuAppsName,
+                                          fontFamily: "Roboto",
+                                          fontSize: 20,
+                                          iconImage: menuApp.logoIcon,
+                                          androidPackageName:
+                                              menuApp.androidAppId,
+                                        ))
+                                    .toList(),
+                              ),
+                            );
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                        },
+                      ),
+                    ],
                   ),
                   flex: 6,
                 ),
