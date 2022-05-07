@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:text_style/API/api_banner_ads.dart';
 import 'package:text_style/component/sidebar.dart';
 import 'component/custom_button.dart';
@@ -32,6 +33,11 @@ class _MenuAppsState extends State<MenuApps> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
     return MaterialApp(
       debugShowCheckedModeBanner: true,
@@ -68,41 +74,28 @@ class _MenuAppsState extends State<MenuApps> {
                   ),
                 ),
                 Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.,
-                    children: [
-                      FutureBuilder(
-                        future: ApiMenuApps.fetchMenuApps(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<List<ApiMenuApps>> snapshot) {
-                          if (snapshot.hasData) {
-                            List<ApiMenuApps>? menuApps = snapshot.data;
-                            return Container(
-                              color: Colors.blue,
-                              alignment: Alignment.topLeft,
-                              child: ListView(
-                                // reverse: true,
-                                shrinkWrap: false,
-                                children: menuApps!
-                                    .map((ApiMenuApps menuApp) =>
-                                        CustomButtonGradient(
-                                          inputText: menuApp.menuAppsName,
-                                          fontFamily: "Roboto",
-                                          fontSize: 20,
-                                          iconImage: menuApp.logoIcon,
-                                          androidPackageName:
-                                              menuApp.androidAppId,
-                                        ))
-                                    .toList(),
-                              ),
-                            );
-                          } else {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                        },
-                      ),
-                    ],
+                  child: FutureBuilder(
+                    future: ApiMenuApps.fetchMenuApps(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                      if (snapshot.hasData) {
+                        List<ApiMenuApps>? menuApps = snapshot.data;
+                        return Column(
+                          children: menuApps!
+                              .map((ApiMenuApps menuApp) =>
+                                  CustomButtonGradient(
+                                    inputText: menuApp.menuAppsName,
+                                    fontFamily: "Roboto",
+                                    fontSize: 20,
+                                    iconImage: menuApp.logoIcon,
+                                    androidPackageName: menuApp.androidAppId,
+                                  ))
+                              .toList(),
+                        );
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
                   ),
                   flex: 6,
                 ),
@@ -113,56 +106,45 @@ class _MenuAppsState extends State<MenuApps> {
                           AsyncSnapshot<List<ApiBannerAds>> snapshot) {
                         if (snapshot.hasData) {
                           List<ApiBannerAds>? apiMenudAds = snapshot.data;
-                          return ListView(
-                            reverse: true,
-                            shrinkWrap: true,
-                            children: apiMenudAds!
-                                .map((ApiBannerAds menuAds) => Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        CarouselSlider(
-                                          items: apiMenudAds.map((i) {
-                                            return Builder(
-                                              builder: (BuildContext context) {
-                                                return Container(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 10, top: 10),
-                                                  child: Image(
-                                                    fit: BoxFit.fill,
-                                                    image: CachedNetworkImageProvider(
-                                                        getDomainIpStatic
-                                                                .ipStatic +
-                                                            "storage/images/banner_ads/" +
-                                                            i.uploadImage),
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          }).toList(),
-                                          options: CarouselOptions(
-                                            aspectRatio: 16 / 7,
-                                            viewportFraction: 0.7,
-                                            initialPage: 0,
-                                            enableInfiniteScroll: true,
-                                            reverse: false,
-                                            autoPlay: true,
-                                            autoPlayInterval:
-                                                const Duration(seconds: 5),
-                                            autoPlayAnimationDuration:
-                                                const Duration(
-                                                    milliseconds: 5000),
-                                            enlargeCenterPage: true,
-                                            // scrollDirection: Axis.horizontal,
-                                          ),
-                                        )
-                                      ],
-                                    ))
-                                .toList(),
+                          return CarouselSlider(
+                            items: apiMenudAds?.map((i) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return CachedNetworkImage(
+                                    imageUrl: getDomainIpStatic.ipStatic +
+                                        "storage/images/banner_ads/" +
+                                        i.uploadImage,
+                                    progressIndicatorBuilder:
+                                        (_, url, download) {
+                                      if (download.progress != null) {
+                                        final percent =
+                                            download.progress! * 100;
+                                        return Text('$percent% done loading');
+                                      } else {
+                                        return const Text("");
+                                      }
+                                    },
+                                  );
+                                },
+                              );
+                            }).toList(),
+                            options: CarouselOptions(
+                              aspectRatio: 18 / 6,
+                              viewportFraction: 0.6,
+                              enableInfiniteScroll: true,
+                              reverse: false,
+                              autoPlay: true,
+                              autoPlayInterval: const Duration(seconds: 5),
+                              autoPlayAnimationDuration:
+                                  const Duration(milliseconds: 5000),
+                              enlargeCenterPage: true,
+                            ),
                           );
                         } else {
                           return const Center(
-                              child: CircularProgressIndicator());
+                              child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ));
                         }
                       },
                     ),

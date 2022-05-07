@@ -79,9 +79,6 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                     controller: emailController,
                     obscureText: false,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   Container(
                     margin: const EdgeInsets.only(top: 20),
                     child: const Align(
@@ -112,8 +109,8 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                     children: [
                       TextButton(
                         child: const Text(
-                          "Lupa Password",
-                          style: TextStyle(color: Colors.white, fontSize: 12),
+                          "Lupa Password?",
+                          style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
                           Navigator.pushReplacement(context, MaterialPageRoute(
@@ -176,17 +173,21 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                               showDialog(
                                   context: context,
                                   builder: (context) {
-                                    Future.delayed(const Duration(seconds: 5),
-                                        () {
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MenuApps()));
-                                    });
                                     return const AlertDialog(
-                                      title: Text("Login successful"),
+                                      title: Text("Alert!",
+                                          style:
+                                              TextStyle(fontFamily: "Roboto")),
+                                      content: Text("Login Successful",
+                                          style:
+                                              TextStyle(fontFamily: "Roboto")),
                                     );
                                   });
+                              Future.delayed(const Duration(seconds: 5), () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MenuApps()));
+                              });
                             } else {
                               showDialog(
                                   context: context,
@@ -196,7 +197,10 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                                       Navigator.of(context).pop(true);
                                     });
                                     return const AlertDialog(
-                                      title: Text("Your email/password wrong"),
+                                      title: Text(
+                                        "Your email/password wrong",
+                                        style: TextStyle(fontFamily: "Roboto"),
+                                      ),
                                     );
                                   });
                             }
@@ -209,7 +213,8 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                                     Navigator.of(context).pop(true);
                                   });
                                   return const AlertDialog(
-                                    title: Text("Login failed"),
+                                    title: Text("Login failed",
+                                        style: TextStyle(fontFamily: "Roboto")),
                                   );
                                 });
                           }
@@ -232,6 +237,7 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                         ],
                       ),
                       style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(20),
                           fixedSize:
                               MaterialStateProperty.all(const Size(250, 50)),
                           alignment: Alignment.center,
@@ -247,6 +253,13 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                             ),
                           )),
                     ),
+                  ),
+                  TextButton(
+                    child: const Text(
+                      "Dont have an account? Sign Up",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {},
                   )
                 ],
               ),

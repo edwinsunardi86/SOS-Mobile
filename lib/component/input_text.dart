@@ -35,6 +35,8 @@ class InputTextFormValidatorV1 extends StatelessWidget {
         obscureText: (obscureText ?? false),
         cursorColor: Colors.black,
         decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
           prefixIcon: icon,
           errorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),

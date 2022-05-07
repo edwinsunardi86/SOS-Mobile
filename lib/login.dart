@@ -56,7 +56,7 @@ class _LoginAppState extends State<LoginApp> {
                       ])),
                   flex: 1,
                 ),
-                const Flexible(child: CustomFormLogin(), flex: 6),
+                const Flexible(child: CustomFormLogin(), flex: 9),
               ])
             ])));
   }

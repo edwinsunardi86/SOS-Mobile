@@ -57,13 +57,20 @@ class CustomButtonGradient extends StatelessWidget {
           child: Row(
             children: [
               iconImage != ""
-                  ? Image(
-                      width: 50,
-                      height: 50,
-                      image: CachedNetworkImageProvider(
-                          getDomainIpStatic.ipStatic +
-                              "storage/images/logo_icon/" +
-                              iconImage!))
+                  ? CachedNetworkImage(
+                      imageUrl: getDomainIpStatic.ipStatic +
+                          "storage/images/logo_icon/" +
+                          iconImage!,
+                      progressIndicatorBuilder: (_, url, download) {
+                        if (download.progress != null) {
+                          final percent = download.progress! * 100;
+                          return Text("$percent% done loading");
+                        }
+                        return const CircularProgressIndicator(
+                          color: Colors.white,
+                        );
+                      },
+                    )
                   : const SizedBox.shrink(),
               Container(
                 margin: const EdgeInsets.all(2),
