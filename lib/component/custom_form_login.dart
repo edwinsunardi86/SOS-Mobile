@@ -5,6 +5,7 @@ import 'package:text_style/main.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:text_style/registration.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -259,7 +260,12 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                       "Dont have an account? Sign Up",
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                        return const Registration();
+                      }));
+                    },
                   )
                 ],
               ),

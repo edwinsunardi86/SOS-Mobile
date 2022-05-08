@@ -40,7 +40,7 @@ class _MenuAppsState extends State<MenuApps> {
     ]);
     GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(

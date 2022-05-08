@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:text_style/get_domain_ip.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiLogin {
   final String? email;
