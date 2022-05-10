@@ -40,14 +40,6 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
     }
   }
 
-  //@override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -74,11 +66,15 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                               )
                             ])),
                   ),
-                  InputTextFormValidatorV1(
-                    verticalM: 5.0,
-                    textValidatorEmpty: "Input email anda",
+                  InputTextFormValidatorV2(
                     controller: emailController,
                     obscureText: false,
+                    validators: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Mohon input email anda';
+                      }
+                      return null;
+                    },
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 20),
@@ -98,9 +94,13 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                               ])),
                     ),
                   ),
-                  InputTextFormValidatorV1(
-                    verticalM: 5.0,
-                    textValidatorEmpty: "Input password anda",
+                  InputTextFormValidatorV2(
+                    validators: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Mohon input password anda';
+                      }
+                      return null;
+                    },
                     controller: passwordController,
                     obscureText: true,
                   ),
@@ -162,11 +162,6 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                             var req = await apiLogin.authentication(
                                 emailController.text, passwordController.text);
                             if (req.statusCode == 200) {
-                              // memberSet!.add({'email': emailController.text});
-                              // await apiLogin.setupPreferences(
-                              //     'email', emailController.text);
-                              // String email = emailController.text;
-
                               logindata!.setBool('login', false);
                               logindata!
                                   .setString('email', emailController.text);

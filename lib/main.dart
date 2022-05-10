@@ -6,7 +6,7 @@ import 'package:text_style/menu_apps.dart';
 import 'package:text_style/registration.dart';
 
 void main() {
-  runApp(const Registration());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {

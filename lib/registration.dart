@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:text_style/component/custom_background.dart';
+import 'package:text_style/component/custom_button.dart';
 import 'package:text_style/component/input_text.dart';
 import 'package:text_style/component/material_state/material_state.dart';
 import 'package:text_style/component/sidebar.dart';
+import 'dart:ui';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -13,8 +15,20 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  final _formKey = GlobalKey<FormState>();
   //ButtonBackgroundColor btnColor = ButtonBackgroundColor(context);
+  TextEditingController fullname = TextEditingController();
+  TextEditingController noHandphone = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController noKtp = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController repassword = TextEditingController();
+  TextEditingController alamat = TextEditingController();
+  TextEditingController uploadPhoto = TextEditingController();
+
   bool isSelected = true;
+
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
@@ -22,94 +36,203 @@ class _RegistrationState extends State<Registration> {
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
+
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          resizeToAvoidBottomInset: true,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
-          drawer: const Sidebar(),
-          body: Stack(
-            children: [
-              const CustomBackground(),
-              Column(
-                children: <Widget>[
-                  Flexible(
-                    flex: 2,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Image(
-                              width: 110,
-                              image:
-                                  AssetImage("assets/images/LOGO-PT-SOS.png")),
-                          Text("MOBILE",
-                              style: TextStyle(
-                                  letterSpacing: 6,
-                                  color: Colors.white,
-                                  fontFamily: "Roboto",
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w800)),
-                        ],
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            // resizeToAvoidBottomInset: false,
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            drawer: const Sidebar(),
+            body: SingleChildScrollView(
+              reverse: true,
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          repeat: ImageRepeat.repeat,
+                          image: AssetImage(
+                              "assets/images/background/red_grad.png"))),
+                  child: Column(children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 50),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Image(
+                                width: 110,
+                                image: AssetImage(
+                                    "assets/images/LOGO-PT-SOS.png")),
+                            Text("MOBILE",
+                                style: TextStyle(
+                                    letterSpacing: 6,
+                                    color: Colors.white,
+                                    fontFamily: "Roboto",
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w800)),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 9,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(children: [
-                        const Text(
-                          "Registration",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Roboto",
-                              fontSize: 20),
-                        ),
-                        const SizedBox(height: 20),
-                        textInputUsername()
-                      ]),
-                    ),
-                  )
-                ],
-              )
-            ],
-          )),
-    );
-  }
-
-  TextFormField textInputUsername() {
-    return TextFormField(
-        validator: (value) {
-          RegExp regex = RegExp(r'^[a-zA-Z0-9]');
-          if (!regex.hasMatch(value!)) {
-            return 'Username must not have space character';
-          } else {
-            return null;
-          }
-        },
-        obscureText: false,
-        cursorColor: Colors.black,
-        decoration: const InputDecoration(
-          labelText: "Username",
-          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-          prefixIcon: Icon(Icons.supervised_user_circle_sharp),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(width: 2, color: Colors.red)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(
-                width: 1,
-                color: Colors.blueAccent,
-              )),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide.none),
-          filled: true,
-          fillColor: Colors.white,
-          alignLabelWithHint: true,
-        ));
+                    Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "Registration",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Roboto",
+                                  fontSize: 20),
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                              controller: fullname,
+                              label: "Nama sesuai KTP",
+                              icon: const Icon(
+                                Icons.account_circle,
+                                color: Colors.black26,
+                              ),
+                              validators: (value) {
+                                if (value!.isEmpty) {
+                                  return "Please input your full name";
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                              controller: noHandphone,
+                              label: "No. Handphone",
+                              icon: const Icon(
+                                Icons.mobile_friendly,
+                                color: Colors.black26,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                              controller: noKtp,
+                              label: "No.KTP",
+                              icon: const Icon(
+                                Icons.perm_identity,
+                                color: Colors.black26,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                                controller: email,
+                                label: "Email",
+                                icon: const Icon(
+                                  Icons.email,
+                                  color: Colors.black26,
+                                ),
+                                validators: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please input email!";
+                                  } else {
+                                    RegExp regex = RegExp(
+                                        r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+                                    if (regex.hasMatch(value)) {
+                                      return null;
+                                    } else {
+                                      return 'You have entered an invalid email address!';
+                                    }
+                                  }
+                                }),
+                            const SizedBox(height: 20),
+                            InputTextFormArea(
+                              controller: alamat,
+                              label: "Alamat",
+                              icon: const Icon(
+                                Icons.home,
+                                color: Colors.black26,
+                              ),
+                              maxLines: 4,
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                              controller: username,
+                              label: "Username",
+                              icon: const Icon(
+                                Icons.account_circle,
+                                color: Colors.black26,
+                              ),
+                              validators: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please input username!';
+                                } else {
+                                  RegExp regex = RegExp(r'^[a-zA-Z0-9]');
+                                  if (regex.hasMatch(value)) {
+                                    return null;
+                                  } else {
+                                    return 'Username must not have space character';
+                                  }
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                                controller: password,
+                                obscureText: true,
+                                label: "Password",
+                                icon: const Icon(
+                                  Icons.password,
+                                  color: Colors.black26,
+                                ),
+                                validators: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please input Password';
+                                  } else {
+                                    RegExp regex = RegExp(r'^[a-zA-Z0-9]');
+                                    if (regex.hasMatch(value)) {
+                                      return null;
+                                    } else {
+                                      return 'Password must not have space character';
+                                    }
+                                  }
+                                }),
+                            const SizedBox(height: 20),
+                            InputTextFormValidatorV2(
+                                controller: repassword,
+                                obscureText: true,
+                                label: "Re-Password",
+                                icon: const Icon(
+                                  Icons.password,
+                                  color: Colors.black26,
+                                ),
+                                validators: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please input Password';
+                                  } else {
+                                    String a = value;
+                                    String b = password.text;
+                                    if (a == b) {
+                                      return null;
+                                    } else {
+                                      return 'Passwords do not match.';
+                                    }
+                                  }
+                                }),
+                            const SizedBox(height: 20),
+                            CustomButtonGradientIconClass(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {}
+                              },
+                              inputText: "Submit",
+                              iconClass: Icons.input,
+                            )
+                          ],
+                        )),
+                  ]),
+                ),
+              ),
+            )));
   }
 }

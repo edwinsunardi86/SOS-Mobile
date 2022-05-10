@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class InputTextFormValidatorV1 extends StatelessWidget {
   //const InputText({Key key}) : super(key: key);
-  final double? verticalM;
-  final double? horizontalM;
+
   final TextEditingController? controller;
   final String? textValidatorEmpty;
   final bool? obscureText;
@@ -11,8 +10,6 @@ class InputTextFormValidatorV1 extends StatelessWidget {
 
   const InputTextFormValidatorV1(
       {Key? key,
-      this.verticalM,
-      this.horizontalM,
       this.controller,
       this.textValidatorEmpty,
       this.obscureText,
@@ -20,13 +17,10 @@ class InputTextFormValidatorV1 extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          vertical: verticalM ?? 0, horizontal: horizontalM ?? 0),
-      decoration: const BoxDecoration(boxShadow: [
-        // BoxShadow(
-        //     color: Colors.black, offset: Offset(3.0, 2.0), blurRadius: 5.0)
-      ]),
+    return Material(
+      color: Colors.transparent,
+      elevation: 15,
+      //shadowColor: Colors.black,
       child: TextFormField(
         controller: controller,
         validator: (value) {
@@ -35,8 +29,6 @@ class InputTextFormValidatorV1 extends StatelessWidget {
         obscureText: (obscureText ?? false),
         cursorColor: Colors.black,
         decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
           prefixIcon: icon,
           errorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -61,48 +53,82 @@ class InputTextFormValidatorV1 extends StatelessWidget {
 
 class InputTextFormValidatorV2 extends StatelessWidget {
   //const InputText({Key key}) : super(key: key);
-  final double? verticalM;
-  final double? horizontalM;
   final TextEditingController? controller;
-  final String? textValidatorEmpty;
   final bool? obscureText;
   final Icon? icon;
   final String? label;
+  final String? Function(String?)? validators;
 
   const InputTextFormValidatorV2(
       {Key? key,
-      this.verticalM,
-      this.horizontalM,
       this.controller,
-      this.textValidatorEmpty,
       this.obscureText,
       this.icon,
-      this.label})
+      this.label,
+      this.validators})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          vertical: verticalM ?? 0, horizontal: horizontalM ?? 0),
-      decoration: const BoxDecoration(boxShadow: [
-        // BoxShadow(
-        //     color: Colors.black, offset: Offset(3.0, 2.0), blurRadius: 5.0)
-      ]),
+    return Material(
+      color: Colors.transparent,
+      elevation: 5,
+      //shadowColor: Colors.black,
       child: TextFormField(
         controller: controller,
-        validator: (value) {
-          return (value == null || value.isEmpty) ? textValidatorEmpty : null;
-        },
+        validator: validators,
         obscureText: (obscureText ?? false),
         cursorColor: Colors.black,
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+          labelStyle: const TextStyle(color: Colors.black26),
           labelText: label,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
           prefixIcon: icon,
           errorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(width: 2, color: Colors.red)),
+          focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderSide: BorderSide(
+                width: 1,
+                color: Colors.blueAccent,
+              )),
+          enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderSide: BorderSide.none),
+          filled: true,
+          fillColor: Colors.white,
+          alignLabelWithHint: true,
+        ),
+      ),
+    );
+  }
+}
+
+class InputTextFormArea extends StatelessWidget {
+  //const InputText({Key key}) : super(key: key);
+
+  final TextEditingController? controller;
+  final Icon? icon;
+  final String? label;
+  final int? maxLines;
+
+  const InputTextFormArea(
+      {Key? key, this.controller, this.icon, this.label, this.maxLines})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      elevation: 15,
+      shadowColor: Colors.black,
+      child: TextFormField(
+        controller: controller,
+        cursorColor: Colors.black,
+        maxLines: maxLines,
+        decoration: InputDecoration(
+          labelStyle: const TextStyle(color: Colors.black26),
+          labelText: label,
+          prefixIcon: icon,
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(

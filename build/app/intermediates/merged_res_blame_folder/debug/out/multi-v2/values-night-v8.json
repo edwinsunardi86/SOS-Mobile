@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "E:\\project\\sos_mobile\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
