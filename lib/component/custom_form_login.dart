@@ -67,6 +67,7 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                             ])),
                   ),
                   InputTextFormValidatorV2(
+                    icon: const Icon(Icons.email),
                     controller: emailController,
                     obscureText: false,
                     validators: (value) {
@@ -95,6 +96,7 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                     ),
                   ),
                   InputTextFormValidatorV2(
+                    icon: const Icon(Icons.password),
                     validators: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Mohon input password anda';
