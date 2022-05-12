@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputTextFormValidatorV1 extends StatelessWidget {
   //const InputText({Key key}) : super(key: key);
@@ -58,6 +59,7 @@ class InputTextFormValidatorV2 extends StatelessWidget {
   final Icon? icon;
   final String? label;
   final String? Function(String?)? validators;
+  final String? inputFormatter;
 
   const InputTextFormValidatorV2(
       {Key? key,
@@ -65,7 +67,8 @@ class InputTextFormValidatorV2 extends StatelessWidget {
       this.obscureText,
       this.icon,
       this.label,
-      this.validators})
+      this.validators,
+      this.inputFormatter})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -76,6 +79,9 @@ class InputTextFormValidatorV2 extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         validator: validators,
+        inputFormatters: [
+          FilteringTextInputFormatter.deny(RegExp(inputFormatter ?? ""))
+        ],
         obscureText: (obscureText ?? false),
         cursorColor: Colors.black,
         decoration: InputDecoration(
@@ -119,7 +125,7 @@ class InputTextFormArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      elevation: 15,
+      elevation: 5,
       shadowColor: Colors.black,
       child: TextFormField(
         controller: controller,

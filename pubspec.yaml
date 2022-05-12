@@ -70,6 +70,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
       - assets/images/LOGO-PT-SOS.png
+      - assets/images/icon_info.png
       # - assets/images/career_icon.jpg
       # - assets/images/icons/absensi.png
       # - assets/images/icons/karir.png

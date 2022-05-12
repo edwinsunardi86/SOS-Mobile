@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:text_style/API/api_menu_login.dart';
+import 'package:text_style/component/custom_dialog_box.dart';
 import 'package:text_style/component/input_text.dart';
 import 'package:text_style/main.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -169,17 +170,14 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                                   .setString('email', emailController.text);
 
                               showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return const AlertDialog(
-                                      title: Text("Alert!",
-                                          style:
-                                              TextStyle(fontFamily: "Roboto")),
-                                      content: Text("Login Successful",
-                                          style:
-                                              TextStyle(fontFamily: "Roboto")),
-                                    );
-                                  });
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const CustomDialogBox(
+                                      title: "Warning !",
+                                      description: "Login Successful",
+                                      text: "Oke");
+                                },
+                              );
                               Future.delayed(const Duration(seconds: 5), () {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(

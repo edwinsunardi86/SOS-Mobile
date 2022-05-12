@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:text_style/component/custom_background.dart';
+import 'package:text_style/API/api_registration_user.dart';
 import 'package:text_style/component/custom_button.dart';
+import 'package:text_style/component/custom_dialog_box.dart';
 import 'package:text_style/component/input_text.dart';
-import 'package:text_style/component/material_state/material_state.dart';
 import 'package:text_style/component/sidebar.dart';
-import 'dart:ui';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -127,6 +126,7 @@ class _RegistrationState extends State<Registration> {
                             ),
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
+                                inputFormatter: r'[\s]',
                                 controller: email,
                                 label: "Email",
                                 icon: const Icon(
@@ -158,6 +158,7 @@ class _RegistrationState extends State<Registration> {
                             ),
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
+                              inputFormatter: r'[\s]',
                               controller: username,
                               label: "Username",
                               icon: const Icon(
@@ -180,6 +181,7 @@ class _RegistrationState extends State<Registration> {
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
                                 controller: password,
+                                inputFormatter: r'[\s]',
                                 obscureText: true,
                                 label: "Password",
                                 icon: const Icon(
@@ -201,6 +203,7 @@ class _RegistrationState extends State<Registration> {
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
                                 controller: repassword,
+                                inputFormatter: r'[\s]',
                                 obscureText: true,
                                 label: "Re-Password",
                                 icon: const Icon(
@@ -222,8 +225,26 @@ class _RegistrationState extends State<Registration> {
                                 }),
                             const SizedBox(height: 20),
                             CustomButtonGradientIconClass(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {}
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  var req = await ApiRegistrationUser
+                                      .postRegistrationUser(
+                                          username.text,
+                                          password.text,
+                                          email.text,
+                                          fullname.text,
+                                          noKtp.text,
+                                          noHandphone.text,
+                                          alamat.text);
+                                  if (req.statusCode == 200) {
+                                    const CustomDialogBox(
+                                      title: "Perhatian",
+                                      description:
+                                          "Registration User Success! Please check your email for a verified link.",
+                                      text: "OKE",
+                                    );
+                                  }
+                                }
                               },
                               inputText: "Submit",
                               iconClass: Icons.input,

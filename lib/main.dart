@@ -3,7 +3,6 @@ import 'package:text_style/login.dart';
 // import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/menu_apps.dart';
-import 'package:text_style/registration.dart';
 
 void main() {
   runApp(const MyApp());
