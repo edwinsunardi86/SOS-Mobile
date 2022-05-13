@@ -119,7 +119,7 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                         onPressed: () {
                           Navigator.pushReplacement(context, MaterialPageRoute(
                               builder: (BuildContext context) {
-                            return const MyApp();
+                            return MyApp();
                           }));
                         },
                       ),

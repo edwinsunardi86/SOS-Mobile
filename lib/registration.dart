@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:text_style/API/api_registration_user.dart';
+import 'package:text_style/API/api_user.dart';
 import 'package:text_style/component/custom_button.dart';
 import 'package:text_style/component/custom_dialog_box.dart';
 import 'package:text_style/component/input_text.dart';
 import 'package:text_style/component/sidebar.dart';
+import 'package:text_style/resend_email_verification.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  ApiUser? apiUser;
   final _formKey = GlobalKey<FormState>();
   //ButtonBackgroundColor btnColor = ButtonBackgroundColor(context);
   TextEditingController fullname = TextEditingController();
@@ -59,26 +63,23 @@ class _RegistrationState extends State<Registration> {
                               "assets/images/background/red_grad.png"))),
                   child: Column(children: [
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 50),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Image(
-                                width: 110,
-                                image: AssetImage(
-                                    "assets/images/LOGO-PT-SOS.png")),
-                            Text("MOBILE",
-                                style: TextStyle(
-                                    letterSpacing: 6,
-                                    color: Colors.white,
-                                    fontFamily: "Roboto",
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w800)),
-                          ],
-                        ),
-                      ),
-                    ),
+                        margin: const EdgeInsets.symmetric(vertical: 50),
+                        child: Center(
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                              Image(
+                                  width: 110,
+                                  image: AssetImage(
+                                      "assets/images/LOGO-PT-SOS.png")),
+                              Text("MOBILE",
+                                  style: TextStyle(
+                                      letterSpacing: 6,
+                                      color: Colors.white,
+                                      fontFamily: "Roboto",
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w800)),
+                            ]))),
                     Container(
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         child: Column(
@@ -92,20 +93,19 @@ class _RegistrationState extends State<Registration> {
                             ),
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
-                              controller: fullname,
-                              label: "Nama sesuai KTP",
-                              icon: const Icon(
-                                Icons.account_circle,
-                                color: Colors.black26,
-                              ),
-                              validators: (value) {
-                                if (value!.isEmpty) {
-                                  return "Please input your full name";
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
+                                controller: fullname,
+                                label: "Nama sesuai KTP",
+                                icon: const Icon(
+                                  Icons.account_circle,
+                                  color: Colors.black26,
+                                ),
+                                validators: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please input your full name";
+                                  } else {
+                                    return null;
+                                  }
+                                }),
                             const SizedBox(height: 20),
                             InputTextFormValidatorV2(
                               controller: noHandphone,
@@ -227,23 +227,72 @@ class _RegistrationState extends State<Registration> {
                             CustomButtonGradientIconClass(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  var req = await ApiRegistrationUser
-                                      .postRegistrationUser(
-                                          username.text,
-                                          password.text,
-                                          email.text,
-                                          fullname.text,
-                                          noKtp.text,
-                                          noHandphone.text,
-                                          alamat.text);
+                                  var req = await ApiUser.postRegistrationUser(
+                                      username.text,
+                                      password.text,
+                                      email.text,
+                                      fullname.text,
+                                      noKtp.text,
+                                      noHandphone.text,
+                                      alamat.text);
+                                  //if (req.statusCode == 200) {
                                   if (req.statusCode == 200) {
-                                    const CustomDialogBox(
-                                      title: "Perhatian",
-                                      description:
-                                          "Registration User Success! Please check your email for a verified link.",
-                                      text: "OKE",
+                                    var getdata = jsonDecode(req.body);
+                                    var mappingUser =
+                                        ApiUser.validationInput(getdata);
+                                    //mappingUser.confirmationEmail;
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        String? message;
+                                        if (mappingUser.validationUsername ==
+                                            "invalid") {
+                                          message =
+                                              mappingUser.confirmationUsername;
+                                        } else if (mappingUser
+                                                .validationEmail ==
+                                            "invalid") {
+                                          message =
+                                              mappingUser.confirmationEmail;
+                                        } else if (mappingUser
+                                                    .validationUsername ==
+                                                "valid" &&
+                                            mappingUser.validationEmail ==
+                                                "valid") {
+                                          message = "Login Successful";
+                                        }
+                                        return CustomDialogBox(
+                                            title: "Warning!",
+                                            description: message,
+                                            text: "Oke");
+                                      },
+                                    );
+                                    if (mappingUser.validationEmail ==
+                                            "valid" &&
+                                        mappingUser.validationUsername ==
+                                            "valid") {
+                                      Future.delayed(const Duration(seconds: 5),
+                                          () {
+                                        Navigator.pushReplacement(context,
+                                            MaterialPageRoute(builder:
+                                                (BuildContext context) {
+                                          return const ResendEmailVerification();
+                                        }));
+                                      });
+                                    }
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const CustomDialogBox(
+                                            title: "Warning!",
+                                            description: "Error",
+                                            text: "Oke");
+                                      },
                                     );
                                   }
+
+                                  //}
                                 }
                               },
                               inputText: "Submit",
