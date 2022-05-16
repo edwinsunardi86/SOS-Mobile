@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:text_style/API/api_menu_login.dart';
 import 'package:text_style/component/custom_dialog_box.dart';
@@ -7,6 +9,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/registration.dart';
+import 'package:text_style/resend_email_verification.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -23,7 +26,7 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
   final _formKey = GlobalKey<FormState>();
   SharedPreferences? logindata;
   late bool newuser;
-  late SharedPreferences? getData;
+  // late SharedPreferences? getData;
   late String getEmail;
   @override
   void initState() {
@@ -34,7 +37,10 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
   void checkIfAlreadyLogin() async {
     logindata = await SharedPreferences.getInstance();
     newuser = (logindata!.getBool('login') ?? true);
-
+    await ApiLogin.getFieldUser(emailController.toString()).then((value) {
+      apiLogin = value;
+      setState(() {});
+    });
     if (newuser == false) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const MenuApps()));
@@ -180,9 +186,13 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                               );
                               Future.delayed(const Duration(seconds: 5), () {
                                 Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MenuApps()));
+                                    MaterialPageRoute(builder: (context) {
+                                  if (apiLogin.emailVerifiedAt != "") {
+                                    return const MenuApps();
+                                  } else {
+                                    return const ResendEmailVerification();
+                                  }
+                                }));
                               });
                             } else {
                               showDialog(

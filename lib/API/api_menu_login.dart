@@ -6,14 +6,16 @@ class ApiLogin {
   final String? email;
   final String? password;
   final String? fullname;
+  final String? emailVerifiedAt;
 
-  ApiLogin({this.email, this.password, this.fullname});
+  ApiLogin({this.email, this.password, this.fullname, this.emailVerifiedAt});
 
   factory ApiLogin.createPostLogin(Map<String, dynamic> object) {
     return ApiLogin(
         email: object['email'] ?? "",
         password: object['password'] ?? "",
-        fullname: object['fullname'] ?? "");
+        fullname: object['fullname'] ?? "",
+        emailVerifiedAt: object['email_verified_at'] ?? "");
   }
 
   Future<http.Response> authentication(String email, String password) async {
@@ -56,7 +58,7 @@ class ApiLogin {
         "email": email.toString(),
       }),
     );
-    var apiResult = jsonDecode(response.body);
+    var apiResult = json.decode(response.body);
     return ApiLogin.createPostLogin(apiResult);
   }
 }

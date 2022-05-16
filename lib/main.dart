@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: (login != true) ? const MenuApps() : const LoginApp(),
-    );
+        // home: (login != true) ? const MenuApps() : const LoginApp());
+        home: ResendEmailVerification());
   }
 }

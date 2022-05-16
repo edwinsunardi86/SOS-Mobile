@@ -23,7 +23,7 @@ class MenuApps extends StatefulWidget {
 }
 
 class _MenuAppsState extends State<MenuApps> {
-  late SharedPreferences? getData;
+  // late SharedPreferences? getData;
   late String getEmail;
   List<ApiBannerAds>? apiMenudAds;
   @override
