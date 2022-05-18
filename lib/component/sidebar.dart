@@ -87,6 +87,7 @@ class _SidebarState extends State<Sidebar> {
             ),
             onTap: () async {
               await logindata.setBool('login', true);
+              await logindata.remove('email');
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const LoginApp()));
             },

@@ -172,28 +172,38 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                                 emailController.text, passwordController.text);
                             if (req.statusCode == 200) {
                               logindata!.setBool('login', false);
-                              logindata!
+                              await logindata!
                                   .setString('email', emailController.text);
 
-                              showDialog(
+                              // Future.delayed(const Duration(seconds: 5), () {
+                              await ApiLogin.getFieldUser(emailController.text)
+                                  .then((value) {
+                                setState(() {
+                                  apiLogin = value;
+                                });
+                              });
+                              await showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return const CustomDialogBox(
                                       title: "Warning !",
-                                      description: "Login Successful",
+                                      description: "Login Success!",
                                       text: "Oke");
                                 },
                               );
-                              Future.delayed(const Duration(seconds: 5), () {
+                              if (apiLogin.emailVerifiedAt != "") {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(builder: (context) {
-                                  if (apiLogin.emailVerifiedAt != "") {
-                                    return const MenuApps();
-                                  } else {
-                                    return const ResendEmailVerification();
-                                  }
+                                  return const MenuApps();
                                 }));
-                              });
+                              } else {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(builder: (context) {
+                                  return const ResendEmailVerification();
+                                }));
+                              }
+
+                              // });
                             } else {
                               showDialog(
                                   context: context,

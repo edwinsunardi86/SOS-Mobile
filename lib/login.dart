@@ -20,6 +20,7 @@ class _LoginAppState extends State<LoginApp> {
       DeviceOrientation.portraitUp,
     ]);
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             resizeToAvoidBottomInset: false,
             body: Stack(children: [

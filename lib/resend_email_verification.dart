@@ -10,6 +10,7 @@ import 'package:text_style/component/custom_button.dart';
 import 'package:text_style/component/custom_dialog_box.dart';
 import 'package:text_style/API/api_user.dart';
 import 'package:text_style/menu_apps.dart';
+import 'package:cron/cron.dart';
 
 import 'API/api_user.dart';
 //import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -23,23 +24,6 @@ class ResendEmailVerification extends StatefulWidget {
 }
 
 class _ResendEmailVerificationState extends State<ResendEmailVerification> {
-  // CountdownTimerController? controller;
-  // int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
-  //@override
-  //void initState() {
-  //super.initState();
-  //controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
-  //}
-
-  // void onEnd() {
-  //   print('onEnd');
-  //   setState(() {
-  //     onPressed = true;
-  //   });
-  // }
-
-  //bool onPressed = false;
-  // ApiUser? apiUser;
   ApiLogin? apiLogin;
   ApiUser? apiUser;
   SharedPreferences? logindata;
@@ -65,26 +49,8 @@ class _ResendEmailVerificationState extends State<ResendEmailVerification> {
 
   void initial() async {
     logindata = await SharedPreferences.getInstance();
-    //setState(() {
-    // ApiLogin.getFieldUser(email.toString()).then((value) {
-    //   apiLogin = value;
-    //   setState(() {});
-    // });
-    //});
   }
 
-//  final Stream<String> _bids = (() {
-//     late final StreamController<String> controller;
-//     controller = StreamController<String>(
-//       onListen: () async {
-//         await Future<void>.delayed(const Duration(seconds: 1));
-//         controller.add("test");
-//         await Future<void>.delayed(const Duration(seconds: 1));
-//         await controller.close();
-//       },
-//     );
-//     return controller.stream;
-//   })();
   Stream<String> streamController() {
     email = logindata?.getString('email') ?? "";
     late final StreamController<String> controller;
@@ -152,8 +118,33 @@ class _ResendEmailVerificationState extends State<ResendEmailVerification> {
                                       case ConnectionState.active:
                                         const Icon(Icons.notifications_active,
                                             color: Colors.white, size: 35);
-                                        iconWidget =
-                                            Text(snapshot.data.toString());
+
+                                        final cron = Cron();
+                                        cron.schedule(
+                                            Schedule.parse('*/5 * * * * *'),
+                                            () async {
+                                          await ApiLogin.getFieldUser(logindata
+                                                      ?.getString('email')
+                                                      .toString() ??
+                                                  "")
+                                              .then((value) {
+                                            apiLogin = value;
+                                          });
+                                          String? emailVerified =
+                                              apiLogin?.emailVerifiedAt ?? "";
+                                          if (emailVerified != "") {
+                                            await Navigator.of(context)
+                                                .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                              return const MenuApps();
+                                            }));
+                                          }
+                                        });
+                                        iconWidget = const Icon(
+                                            Icons.notifications_active_rounded,
+                                            color: Colors.white,
+                                            size: 35);
                                         break;
                                       case ConnectionState.done:
                                         iconWidget = const Icon(Icons.done,
@@ -162,72 +153,45 @@ class _ResendEmailVerificationState extends State<ResendEmailVerification> {
                                     }
                                   }
                                   return iconWidget;
-                                  // if (snapshot.hasData) {
-                                  //   var getVerified =
-                                  //       apiLogin?.emailVerifiedAt ?? "0";
-                                  //   if (apiLogin!.emailVerifiedAt != "") {
-                                  //     SchedulerBinding.instance!
-                                  //         .addPostFrameCallback((_) {
-                                  //       Navigator.of(context).pushReplacement(
-                                  //           MaterialPageRoute(
-                                  //               builder: (context) {
-                                  //         return const MenuApps();
-                                  //       }));
-                                  //     });
-                                  //     return Text("Tresss");
-                                  //   } else {
-                                  //     return Text(getVerified.toString());
-                                  //   }
-
-                                  //   // return const ResendEmailVerification();
-
-                                  // } else {
-                                  //   return const CircularProgressIndicator(
-                                  //       color: Colors.white);
-                                  // }
                                 }),
-                            // CountdownTimer(
-                            //     controller: controller,
-                            //     onEnd: onEnd,
-                            //     endTime: endTime),
-                            // (onPressed == true)
-                            // ?
                             CustomButtonGradientIconClass(
-                              // onPressed: () async {
-                              //   setState(() {
-                              //     onPressed = false;
-                              //     // initState();
-                              //   });
-                              //   // Future.delayed(const Duration(seconds: 5), () {
-                              //   showDialog(
-                              //       context: context,
-                              //       useSafeArea: true,
-                              //       builder: (_) {
-                              //         return const CustomDialogBox(
-                              //             title: "Test",
-                              //             description: "deskripsi",
-                              //             text: "test");
-                              //       });
-                              //   // });
-                              // },
-                              inputText: "Resend Email",
+                              onPressed: () async {
+                                var req = await ApiUser.sendEmailVerification(
+                                    apiLogin!.username.toString(),
+                                    apiLogin!.email.toString());
+                                var getData = json.decode(req.body);
+                                var mappingUser = ApiUser.mapUser(getData);
+                                if (req.statusCode == 200) {
+                                  if (mappingUser.verifiedEmail.toString() ==
+                                      "") {
+                                    showDialog(
+                                        context: context,
+                                        useSafeArea: true,
+                                        builder: (_) {
+                                          return const CustomDialogBox(
+                                              title: "Warning",
+                                              description:
+                                                  "Check your inbox to verification email",
+                                              text: "OK");
+                                        });
+                                  }
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      useSafeArea: true,
+                                      builder: (_) {
+                                        return const CustomDialogBox(
+                                            title: "Warning",
+                                            description:
+                                                "Your email has been already verification",
+                                            text: "OK");
+                                      });
+                                }
+                              },
+                              inputText: "Resend Email Verification",
                               iconClass: Icons.send_outlined,
                             )
-                            // : Text("Empty")
                           ])))
                 ]))));
   }
-
-  // @override
-  // void dispose() {
-  //   controller!.dispose();
-  //   super.dispose();
-  // }
-  // Timer scheduleTimeout([int milliseconds = 10000]) =>
-  //     Timer(Duration(milliseconds: milliseconds), handleTimeOut);
-  // void handleTimeOut() {
-  //   setState(() {
-  //     onPressed = false;
-  //   });
-  // }
 }

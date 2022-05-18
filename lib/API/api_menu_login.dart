@@ -3,15 +3,22 @@ import 'package:text_style/get_domain_ip.dart';
 import 'package:http/http.dart' as http;
 
 class ApiLogin {
+  final String? username;
   final String? email;
   final String? password;
   final String? fullname;
   final String? emailVerifiedAt;
 
-  ApiLogin({this.email, this.password, this.fullname, this.emailVerifiedAt});
+  ApiLogin(
+      {this.username,
+      this.email,
+      this.password,
+      this.fullname,
+      this.emailVerifiedAt});
 
   factory ApiLogin.createPostLogin(Map<String, dynamic> object) {
     return ApiLogin(
+        username: object['username'] ?? "",
         email: object['email'] ?? "",
         password: object['password'] ?? "",
         fullname: object['fullname'] ?? "",
@@ -58,7 +65,7 @@ class ApiLogin {
         "email": email.toString(),
       }),
     );
-    var apiResult = json.decode(response.body);
+    var apiResult = json.decode(response.body) ?? "";
     return ApiLogin.createPostLogin(apiResult);
   }
 }

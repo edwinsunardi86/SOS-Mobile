@@ -50,11 +50,38 @@ class ApiUser {
       fullName: json['fullname'] ?? "",
       noHandphone: json['no_handphone'] ?? "",
       noKtp: json['no_ktp'] ?? "",
-      verifiedEmail: json['verified_email_at'] ?? "",
+      verifiedEmail: json['email_verified_at'] ?? "",
     );
   }
-  // static Future<List<ApiRegistrationUser>> postRegistrationUser(
-  static Future<http.Response> postRegistrationUser(
+
+  // static Future<http.Response> postRegistrationUser(
+  //     String username,
+  //     String password,
+  //     String email,
+  //     String fullName,
+  //     String noKtp,
+  //     String noHandphone,
+  //     String alamat) async {
+  //   final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+  //   String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
+  //   http.Response response = await http.post(Uri.parse(apiUrl),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: json.encode(<String, String>{
+  //         'username': username.toString(),
+  //         'password': password.toString(),
+  //         'email': email.toString(),
+  //         'fullname': fullName.toString(),
+  //         'no_ktp': noKtp.toString(),
+  //         'no_handphone': noHandphone.toString(),
+  //         'alamat': alamat.toString()
+  //       }));
+  //   return response;
+  // }
+
+  static Future<http.MultipartRequest> multiPartRegistrationUser(
+      String filename,
       String username,
       String password,
       String email,
@@ -63,41 +90,52 @@ class ApiUser {
       String noHandphone,
       String alamat) async {
     final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+    final Map<String, String> headers = {'Content-Type': 'application/json'};
+    final Map<String, String> postData = {
+      'username': username,
+      'password': password,
+      'email': email,
+      'fullname': fullName,
+      'no_ktp': noKtp,
+      'no_handphone': noHandphone,
+      'alamat': alamat
+    };
     String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
-    http.Response response = await http.post(Uri.parse(apiUrl),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: json.encode(<String, String>{
-          'username': username.toString(),
-          'password': password.toString(),
-          'email': email.toString(),
-          'fullname': fullName.toString(),
-          'no_ktp': noKtp.toString(),
-          'no_handphone': noHandphone.toString(),
-          'alamat': alamat.toString()
-        }));
+    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+    request.files.add(await http.MultipartFile.fromPath('picture', filename));
+    request.headers.addEntries(headers.entries);
+    request.fields.addEntries(postData.entries);
+    return request;
+  }
+
+  static Future<http.Response> sendEmailVerification(
+      String username, String email) async {
+    final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+    String apiUrl = getDomainIpStatic.ipStatic +
+        "api/resend_email_verification?username=" +
+        username +
+        "&email=" +
+        email;
+    http.Response response = await http.get(
+      Uri.parse(apiUrl),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      // body: json.encode(<String, dynamic>{
+      //   'username': username.toString(),
+      //   'email': email.toString()
+      // })
+    );
     return response;
   }
 
-  // static Future<http.Response> checkVerifiedEmail(String email) async {
-  //   final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
-  //   String apiUrl = getDomainIpStatic.ipStatic + "api/check_verification_email";
-  //   http.Response response = await http.post(Uri.parse(apiUrl),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8'
-  //       },
-  //       body: json.encode(<String, dynamic>{'email': email.toString()}));
-  //   return response;
+  // static Stream<http.Response> checkVerifiedEmail(String email) async* {
+  //   yield* Stream.periodic(const Duration(seconds: 5), (_) {
+  //     final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
+  //     String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
+  //     return http.get(
+  //       Uri.parse(apiUrl),
+  //     );
+  //   }).asyncMap((event) async => await event);
   // }
-
-  static Stream<http.Response> checkVerifiedEmail(String email) async* {
-    yield* Stream.periodic(const Duration(seconds: 5), (_) {
-      final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
-      String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
-      return http.get(
-        Uri.parse(apiUrl),
-      );
-    }).asyncMap((event) async => await event);
-  }
 }

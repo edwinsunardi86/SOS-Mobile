@@ -129,8 +129,9 @@ class _MenuAppsState extends State<MenuApps> {
                               );
                             }).toList(),
                             options: CarouselOptions(
-                              aspectRatio: 18 / 6,
-                              viewportFraction: 0.6,
+                              height: 200,
+                              // aspectRatio: 18 / 6,
+                              viewportFraction: 0.7,
                               enableInfiniteScroll: true,
                               reverse: false,
                               autoPlay: true,
