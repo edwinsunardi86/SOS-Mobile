@@ -276,10 +276,11 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute<void>(
-                          builder: (BuildContext context) {
-                        return const Registration();
-                      }));
+                      // Navigator.push(context, MaterialPageRoute<void>(
+                      //     builder: (BuildContext context) {
+                      //   return const Registration();
+                      // }));
+                      Navigator.pushReplacementNamed(context, '/register_user');
                     },
                   )
                 ],

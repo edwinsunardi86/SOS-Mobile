@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,6 +54,11 @@ class _RegistrationState extends State<Registration> {
     ]);
 
     return MaterialApp(
+        theme: ThemeData(
+            primaryColor: Colors.black,
+            pageTransitionsTheme: const PageTransitionsTheme(builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder()
+            })),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             // resizeToAvoidBottomInset: false,
@@ -60,6 +66,11 @@ class _RegistrationState extends State<Registration> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
+              leading: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Icon(Icons.arrow_back)),
             ),
             body: Stack(
               children: [
@@ -278,82 +289,88 @@ class _RegistrationState extends State<Registration> {
                                 const SizedBox(height: 20),
                                 CustomButtonGradientIconClass(
                                   onPressed: () async {
-                                    // if (_formKey.currentState!.validate()) {
-                                    //   var req =
-                                    //       await ApiUser.multiPartRegistrationUser(
-                                    //           username.text,
-                                    //           password.text,
-                                    //           email.text,
-                                    //           fullname.text,
-                                    //           noKtp.text,
-                                    //           noHandphone.text,
-                                    //           alamat.text);
-                                    //   //if (req.statusCode == 200) {
-                                    //   if (req.statusCode == 200) {
-                                    //     logindata =
-                                    //         await SharedPreferences.getInstance();
-                                    //     ApiLogin.getFieldUser(email.text)
-                                    //         .then((value) => apiLogin = value);
-                                    //     logindata!.setString('email',
-                                    //         apiLogin?.email.toString() ?? "");
-                                    //     logindata!.setString('username',
-                                    //         apiLogin?.username.toString() ?? "");
-                                    //     var getdata = jsonDecode(req.body);
-                                    //     var mappingUser =
-                                    //         ApiUser.validationInput(getdata);
-                                    //     //mappingUser.confirmationEmail;
-                                    //     showDialog(
-                                    //       context: context,
-                                    //       builder: (BuildContext context) {
-                                    //         String? message;
-                                    //         if (mappingUser.validationUsername ==
-                                    //             "invalid") {
-                                    //           message =
-                                    //               mappingUser.confirmationUsername;
-                                    //         } else if (mappingUser
-                                    //                 .validationEmail ==
-                                    //             "invalid") {
-                                    //           message =
-                                    //               mappingUser.confirmationEmail;
-                                    //         } else if (mappingUser
-                                    //                     .validationUsername ==
-                                    //                 "valid" &&
-                                    //             mappingUser.validationEmail ==
-                                    //                 "valid") {
-                                    //           message = "Registration Success";
-                                    //         }
-                                    //         return CustomDialogBox(
-                                    //             title: "Warning!",
-                                    //             description: message,
-                                    //             text: "Oke");
-                                    //       },
-                                    //     );
-                                    //     if (mappingUser.validationEmail ==
-                                    //             "valid" &&
-                                    //         mappingUser.validationUsername ==
-                                    //             "valid") {
-                                    //       Future.delayed(const Duration(seconds: 5),
-                                    //           () {
-                                    //         Navigator.pushReplacement(context,
-                                    //             MaterialPageRoute(builder:
-                                    //                 (BuildContext context) {
-                                    //           return const ResendEmailVerification();
-                                    //         }));
-                                    //       });
-                                    //     }
-                                    //   } else {
-                                    //     showDialog(
-                                    //       context: context,
-                                    //       builder: (BuildContext context) {
-                                    //         return const CustomDialogBox(
-                                    //             title: "Warning!",
-                                    //             description: "Error",
-                                    //             text: "Oke");
-                                    //       },
-                                    //     );
-                                    //   }
-
-                                    // }
+                                    if (_formKey.currentState!.validate()) {
+                                      var req = await ApiUser
+                                          .multiPartRegistrationUser(
+                                              imageFile,
+                                              username.text,
+                                              password.text,
+                                              email.text,
+                                              fullname.text,
+                                              noKtp.text,
+                                              noHandphone.text,
+                                              alamat.text);
+                                      //if (req.statusCode == 200) {
+                                      var response = await req.send();
+                                      if (response.statusCode == 200) {
+                                        logindata = await SharedPreferences
+                                            .getInstance();
+                                        ApiLogin.getFieldUser(email.text)
+                                            .then((value) => apiLogin = value);
+                                        logindata!.setString('email',
+                                            apiLogin?.email.toString() ?? "");
+                                        logindata!.setString(
+                                            'username',
+                                            apiLogin?.username.toString() ??
+                                                "");
+                                        String respStr = await response.stream
+                                            .bytesToString();
+                                        var getdata = jsonDecode(respStr);
+                                        var mappingUser =
+                                            ApiUser.validationInput(getdata);
+                                        //mappingUser.confirmationEmail;
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            String? message;
+                                            if (mappingUser
+                                                    .validationUsername ==
+                                                "invalid") {
+                                              message = mappingUser
+                                                  .confirmationUsername;
+                                            } else if (mappingUser
+                                                    .validationEmail ==
+                                                "invalid") {
+                                              message =
+                                                  mappingUser.confirmationEmail;
+                                            } else if (mappingUser
+                                                        .validationUsername ==
+                                                    "valid" &&
+                                                mappingUser.validationEmail ==
+                                                    "valid") {
+                                              message = "Registration Success";
+                                            }
+                                            return CustomDialogBox(
+                                                title: "Warning!",
+                                                description: message,
+                                                text: "Oke");
+                                          },
+                                        );
+                                        if (mappingUser.validationEmail ==
+                                                "valid" &&
+                                            mappingUser.validationUsername ==
+                                                "valid") {
+                                          Future.delayed(
+                                              const Duration(seconds: 5), () {
+                                            Navigator.pushReplacement(context,
+                                                MaterialPageRoute(builder:
+                                                    (BuildContext context) {
+                                              return const ResendEmailVerification();
+                                            }));
+                                          });
+                                        }
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return const CustomDialogBox(
+                                                title: "Warning!",
+                                                description: "Error",
+                                                text: "Oke");
+                                          },
+                                        );
+                                      }
+                                    }
                                   },
                                   inputText: "Submit",
                                   iconClass: Icons.input,

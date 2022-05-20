@@ -19,46 +19,45 @@ class _LoginAppState extends State<LoginApp> {
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Stack(children: [
-              const CustomBackground(),
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Flexible(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      CustomLogo(),
-                    ],
-                  ),
-                  flex: 2,
-                ),
-                Flexible(
-                  child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Column(children: const [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text("Login",
-                              style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  shadows: <Shadow>[
-                                    Shadow(
-                                      color: Colors.black,
-                                      blurRadius: 5.0,
-                                      offset: Offset(3.0, 2.0),
-                                    )
-                                  ])),
-                        ),
-                      ])),
-                  flex: 1,
-                ),
-                const Flexible(child: CustomFormLogin(), flex: 9),
-              ])
-            ])));
+
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(children: [
+          const CustomBackground(),
+          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  CustomLogo(),
+                ],
+              ),
+              flex: 2,
+            ),
+            Flexible(
+              child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Column(children: const [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text("Login",
+                          style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: Colors.white,
+                              fontSize: 25,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 5.0,
+                                  offset: Offset(3.0, 2.0),
+                                )
+                              ])),
+                    ),
+                  ])),
+              flex: 1,
+            ),
+            const Flexible(child: CustomFormLogin(), flex: 9),
+          ])
+        ]));
   }
 }

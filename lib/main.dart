@@ -3,6 +3,7 @@ import 'package:text_style/login.dart';
 // import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/menu_apps.dart';
+import 'package:text_style/registration.dart';
 import 'package:text_style/resend_email_verification.dart';
 
 void main() {
@@ -59,7 +60,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: (login != true) ? const MenuApps() : const LoginApp());
+        home: (login != true) ? const MenuApps() : const LoginApp(),
+        initialRoute: '/',
+        routes: {
+          '/login': (context) => const LoginApp(),
+          '/menu_apps': (context) => const MenuApps(),
+          '/register_user': (context) => const Registration()
+        });
     //home: ResendEmailVerification());
   }
 }

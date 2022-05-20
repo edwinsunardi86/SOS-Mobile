@@ -39,145 +39,139 @@ class _MenuAppsState extends State<MenuApps> {
       DeviceOrientation.portraitUp,
     ]);
     GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
-        drawer: const Sidebar(),
-        body: Stack(
-          children: [
-            //color: Colors.blue,
-            const CustomBackground(),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      drawer: const Sidebar(),
+      body: Stack(
+        children: [
+          //color: Colors.blue,
+          const CustomBackground(),
 
-            Column(
-              children: <Widget>[
-                Flexible(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Image(
-                          width: 110,
-                          image: AssetImage("assets/images/LOGO-PT-SOS.png")),
-                      Text("MOBILE",
-                          style: TextStyle(
-                              letterSpacing: 6,
-                              color: Colors.white,
-                              fontFamily: "Roboto",
-                              fontSize: 17,
-                              fontWeight: FontWeight.w800)),
-                    ],
-                  ),
+          Column(
+            children: <Widget>[
+              Flexible(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Image(
+                        width: 110,
+                        image: AssetImage("assets/images/LOGO-PT-SOS.png")),
+                    Text("MOBILE",
+                        style: TextStyle(
+                            letterSpacing: 6,
+                            color: Colors.white,
+                            fontFamily: "Roboto",
+                            fontSize: 17,
+                            fontWeight: FontWeight.w800)),
+                  ],
                 ),
-                Flexible(
+              ),
+              Flexible(
+                child: FutureBuilder(
+                  future: ApiMenuApps.fetchMenuApps(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                    if (snapshot.hasData) {
+                      List<ApiMenuApps>? menuApps = snapshot.data;
+                      return Column(
+                        children: menuApps!
+                            .map((ApiMenuApps menuApp) => CustomButtonGradient(
+                                  inputText: menuApp.menuAppsName,
+                                  fontFamily: "Roboto",
+                                  fontSize: 20,
+                                  iconImage: menuApp.logoIcon,
+                                  androidPackageName: menuApp.androidAppId,
+                                ))
+                            .toList(),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+                flex: 6,
+              ),
+              Flexible(
                   child: FutureBuilder(
-                    future: ApiMenuApps.fetchMenuApps(),
+                    future: ApiBannerAds.fetchBannerAds(),
                     builder: (BuildContext context,
-                        AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                        AsyncSnapshot<List<ApiBannerAds>> snapshot) {
                       if (snapshot.hasData) {
-                        List<ApiMenuApps>? menuApps = snapshot.data;
-                        return Column(
-                          children: menuApps!
-                              .map((ApiMenuApps menuApp) =>
-                                  CustomButtonGradient(
-                                    inputText: menuApp.menuAppsName,
-                                    fontFamily: "Roboto",
-                                    fontSize: 20,
-                                    iconImage: menuApp.logoIcon,
-                                    androidPackageName: menuApp.androidAppId,
-                                  ))
-                              .toList(),
+                        List<ApiBannerAds>? apiMenudAds = snapshot.data;
+                        return CarouselSlider(
+                          items: apiMenudAds?.map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return CachedNetworkImage(
+                                  imageUrl: getDomainIpStatic.ipStatic +
+                                      "storage/images/banner_ads/" +
+                                      i.uploadImage,
+                                  progressIndicatorBuilder: (_, url, download) {
+                                    if (download.progress != null) {
+                                      final percent = download.progress! * 100;
+                                      return Text('$percent% done loading');
+                                    } else {
+                                      return const Text("");
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          }).toList(),
+                          options: CarouselOptions(
+                            height: 200,
+                            // aspectRatio: 18 / 6,
+                            viewportFraction: 0.7,
+                            enableInfiniteScroll: true,
+                            reverse: false,
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 5),
+                            autoPlayAnimationDuration:
+                                const Duration(milliseconds: 5000),
+                            enlargeCenterPage: true,
+                          ),
                         );
                       } else {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(
+                            child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ));
                       }
                     },
                   ),
-                  flex: 6,
-                ),
-                Flexible(
-                    child: FutureBuilder(
-                      future: ApiBannerAds.fetchBannerAds(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<ApiBannerAds>> snapshot) {
-                        if (snapshot.hasData) {
-                          List<ApiBannerAds>? apiMenudAds = snapshot.data;
-                          return CarouselSlider(
-                            items: apiMenudAds?.map((i) {
-                              return Builder(
-                                builder: (BuildContext context) {
-                                  return CachedNetworkImage(
-                                    imageUrl: getDomainIpStatic.ipStatic +
-                                        "storage/images/banner_ads/" +
-                                        i.uploadImage,
-                                    progressIndicatorBuilder:
-                                        (_, url, download) {
-                                      if (download.progress != null) {
-                                        final percent =
-                                            download.progress! * 100;
-                                        return Text('$percent% done loading');
-                                      } else {
-                                        return const Text("");
-                                      }
-                                    },
-                                  );
-                                },
-                              );
-                            }).toList(),
-                            options: CarouselOptions(
-                              height: 200,
-                              // aspectRatio: 18 / 6,
-                              viewportFraction: 0.7,
-                              enableInfiniteScroll: true,
-                              reverse: false,
-                              autoPlay: true,
-                              autoPlayInterval: const Duration(seconds: 5),
-                              autoPlayAnimationDuration:
-                                  const Duration(milliseconds: 5000),
-                              enlargeCenterPage: true,
-                            ),
-                          );
-                        } else {
-                          return const Center(
-                              child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ));
-                        }
-                      },
-                    ),
-                    flex: 2)
+                  flex: 2)
 
-                // Flexible(
-                //   flex: 2,
-                //   //color: Colors.red,
-                //   child: CarouselSlider(
-                //     options: CarouselOptions(
-                //       height: 150.0,
-                //       autoPlayInterval: const Duration(seconds: 10),
-                //       autoPlay: true,
-                //       enlargeCenterPage: true,
-                //     ),
-                //     items: images.map((i) {
-                //       return Builder(
-                //         builder: (BuildContext context) {
-                //           return Image(
-                //             width: MediaQuery.of(context).size.width * 1,
-                //             fit: BoxFit.fill,
-                //             image: AssetImage(i),
-                //           );
-                //         },
-                //       );
-                //     }).toList(),
-                //   ),
-                // ),
-              ],
-            ),
-          ],
-        ),
+              // Flexible(
+              //   flex: 2,
+              //   //color: Colors.red,
+              //   child: CarouselSlider(
+              //     options: CarouselOptions(
+              //       height: 150.0,
+              //       autoPlayInterval: const Duration(seconds: 10),
+              //       autoPlay: true,
+              //       enlargeCenterPage: true,
+              //     ),
+              //     items: images.map((i) {
+              //       return Builder(
+              //         builder: (BuildContext context) {
+              //           return Image(
+              //             width: MediaQuery.of(context).size.width * 1,
+              //             fit: BoxFit.fill,
+              //             image: AssetImage(i),
+              //           );
+              //         },
+              //       );
+              //     }).toList(),
+              //   ),
+              // ),
+            ],
+          ),
+        ],
       ),
     );
   }

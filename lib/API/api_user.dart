@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 import 'package:text_style/get_domain_ip.dart';
 
@@ -81,7 +83,7 @@ class ApiUser {
   // }
 
   static Future<http.MultipartRequest> multiPartRegistrationUser(
-      String filename,
+      File? uploadImage,
       String username,
       String password,
       String email,
@@ -90,21 +92,27 @@ class ApiUser {
       String noHandphone,
       String alamat) async {
     final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();
-    final Map<String, String> headers = {'Content-Type': 'application/json'};
-    final Map<String, String> postData = {
-      'username': username,
-      'password': password,
-      'email': email,
-      'fullname': fullName,
-      'no_ktp': noKtp,
-      'no_handphone': noHandphone,
-      'alamat': alamat
-    };
+    // final Map<String, String> headers = {'Content-Type': 'application/json'};
+    // final Map<String, String> postData = {
+    //   'username': username,
+    //   'password': password,
+    //   'email': email,
+    //   'fullname': fullName,
+    //   'no_ktp': noKtp,
+    //   'no_handphone': noHandphone,
+    //   'alamat': alamat
+    // };
     String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
-    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
-    request.files.add(await http.MultipartFile.fromPath('picture', filename));
-    request.headers.addEntries(headers.entries);
-    request.fields.addEntries(postData.entries);
+    var request = http.MultipartRequest('POST', Uri.parse(apiUrl))
+      ..fields['username'] = username
+      ..fields['password'] = password
+      ..fields['email'] = email
+      ..fields['fullname'] = fullName
+      ..fields['no_ktp'] = noKtp
+      ..fields['no_handphone'] = noHandphone
+      ..fields['alamat'] = alamat
+      ..files
+          .add(await http.MultipartFile.fromPath('picture', uploadImage!.path));
     return request;
   }
 
