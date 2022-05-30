@@ -1,4 +1,3 @@
-import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:text_style/get_domain_ip.dart';
@@ -11,16 +10,16 @@ class CustomButtonGradient extends StatelessWidget {
   final String? fontFamily;
   final double? fontSize;
   final String? iconImage;
-  final String? androidPackageName;
+  final VoidCallback? onPressed;
 
-  const CustomButtonGradient({
-    Key? key,
-    required this.inputText,
-    this.fontFamily = "Roboto",
-    this.fontSize = 12,
-    this.iconImage,
-    this.androidPackageName,
-  }) : super(key: key);
+  const CustomButtonGradient(
+      {Key? key,
+      required this.inputText,
+      this.fontFamily = "Roboto",
+      this.fontSize = 12,
+      this.iconImage,
+      this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +47,7 @@ class CustomButtonGradient extends StatelessWidget {
                   ) //blur radius of shadow
                 ]),
             child: ElevatedButton(
-                onPressed: () async {
-                  (androidPackageName != null)
-                      ? await LaunchApp.openApp(
-                          androidPackageName: androidPackageName,
-                          openStore: false)
-                      : "";
-                },
+                onPressed: onPressed,
                 child: Row(
                   children: [
                     iconImage != ""

@@ -6,17 +6,20 @@ class ApiMenuApps {
   final String menuAppsName;
   final String logoIcon;
   final String? androidAppId;
+  final String? webAppId;
 
   ApiMenuApps(
       {required this.menuAppsName,
       required this.logoIcon,
-      required this.androidAppId});
+      required this.androidAppId,
+      required this.webAppId});
 
   factory ApiMenuApps.createMenuApps(Map<String, dynamic> json) {
     return ApiMenuApps(
         menuAppsName: json['menu_apps_name'],
         logoIcon: json['logo_icon'] ?? "",
-        androidAppId: json['android_app_id']);
+        androidAppId: json['android_app_id'],
+        webAppId: json['web_app_id']);
   }
   static Future<List<ApiMenuApps>> fetchMenuApps() async {
     final GetDomainIpStatic getDomainIpStatic = GetDomainIpStatic();

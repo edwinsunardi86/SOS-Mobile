@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class WebViewAndroid extends StatefulWidget {
-  const WebViewAndroid({Key? key}) : super(key: key);
+class WebViewAndroid extends StatelessWidget {
+  final String? url;
+  const WebViewAndroid({Key? key, this.url}) : super(key: key);
 
-  @override
-  State<WebViewAndroid> createState() => _WebViewAndroidState();
-}
-
-class _WebViewAndroidState extends State<WebViewAndroid> {
   @override
   Widget build(BuildContext context) {
-    return const WebView(
-      //initialUrl: 'http://face.sos.co.id:8069',
-      initialUrl: 'flutter.dev',
+    return WebView(
+      initialUrl: url,
       javascriptMode: JavascriptMode.unrestricted,
+      debuggingEnabled: true,
     );
   }
 }

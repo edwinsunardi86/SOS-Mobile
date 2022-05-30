@@ -9,7 +9,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'API/api_menu_apps.dart';
 import 'package:text_style/get_domain_ip.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -30,6 +31,12 @@ class _MenuAppsState extends State<MenuApps> {
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch';
+    }
   }
 
   @override
@@ -73,27 +80,64 @@ class _MenuAppsState extends State<MenuApps> {
                 ),
               ),
               Flexible(
-                child: FutureBuilder(
-                  future: ApiMenuApps.fetchMenuApps(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<ApiMenuApps>> snapshot) {
-                    if (snapshot.hasData) {
-                      List<ApiMenuApps>? menuApps = snapshot.data;
-                      return Column(
-                        children: menuApps!
-                            .map((ApiMenuApps menuApp) => CustomButtonGradient(
+                child: Column(
+                  children: [
+                    CustomButtonGradient(
+                      inputText: 'Karyawan Baru',
+                      fontFamily: 'Roboto',
+                      fontSize: 20,
+                      iconImage: '',
+                      onPressed: () {},
+                    ),
+                    FutureBuilder(
+                      future: ApiMenuApps.fetchMenuApps(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<ApiMenuApps>> snapshot) {
+                        if (snapshot.hasData) {
+                          List<ApiMenuApps>? menuApps = snapshot.data;
+                          return Column(
+                            children: menuApps!.map((ApiMenuApps menuApp) {
+                              if (menuApp.androidAppId != null) {
+                                return CustomButtonGradient(
                                   inputText: menuApp.menuAppsName,
                                   fontFamily: "Roboto",
                                   fontSize: 20,
                                   iconImage: menuApp.logoIcon,
-                                  androidPackageName: menuApp.androidAppId,
-                                ))
-                            .toList(),
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
+                                  onPressed: () async {
+                                    (menuApp.androidAppId != null)
+                                        ? await LaunchApp.openApp(
+                                            androidPackageName:
+                                                menuApp.androidAppId,
+                                            openStore: false)
+                                        : "";
+                                  },
+                                );
+                              } else {
+                                return CustomButtonGradient(
+                                  inputText: menuApp.menuAppsName,
+                                  fontFamily: "Roboto",
+                                  fontSize: 20,
+                                  iconImage: menuApp.logoIcon,
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                      return WebViewAndroid(
+                                          url: menuApp.webAppId);
+                                    }));
+                                    // _launchInBrowser(
+                                    //     Uri(scheme: 'https', host: 'flutter.dev'));
+                                  },
+                                );
+                              }
+                            }).toList(),
+                          );
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      },
+                    ),
+                  ],
                 ),
                 flex: 6,
               ),
