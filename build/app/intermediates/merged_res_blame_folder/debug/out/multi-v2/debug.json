@@ -1,25 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\values-night-v8_values-night-v8.arsc.flat",
+            "outputFile": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\values-ky_values-ky.arsc.flat",
             "map": [
                 {
-                    "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\asus\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-ky\\values-ky.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "175,820",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "471,986"
-                    },
-                    "to": {
-                        "startLines": "2,7",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,352",
-                        "endLines": "6,9",
-                        "endColumns": "12,12",
-                        "endOffsets": "347,516"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     }
                 }
             ]
@@ -40,16 +31,25 @@
             ]
         },
         {
-            "outputFile": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\values-ky_values-ky.arsc.flat",
+            "outputFile": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\values-night-v8_values-night-v8.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\asus\\.gradle\\caches\\transforms-2\\files-2.1\\122df2e57d294d1a53db26bbc3b813c1\\core-1.6.0\\res\\values-ky\\values-ky.xml",
+                    "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "175,820",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "471,986"
+                    },
+                    "to": {
+                        "startLines": "2,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,352",
+                        "endLines": "6,9",
+                        "endColumns": "12,12",
+                        "endOffsets": "347,516"
                     }
                 }
             ]

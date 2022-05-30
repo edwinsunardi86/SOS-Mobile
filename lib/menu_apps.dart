@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:text_style/API/api_banner_ads.dart';
 import 'package:text_style/component/sidebar.dart';
+import 'package:text_style/webview_android.dart';
 import 'component/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
 import 'API/api_menu_apps.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/get_domain_ip.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -96,6 +97,19 @@ class _MenuAppsState extends State<MenuApps> {
                 ),
                 flex: 6,
               ),
+              // Flexible(
+              //     child: CustomButtonGradientIconClass(
+              //         inputText: 'Face App',
+              //         fontFamily: 'Roboto',
+              //         fontSize: 12,
+              //         iconClass: Icons.abc,
+              //         onPressed: () {
+              //           Navigator.push(context,
+              //               MaterialPageRoute(builder: (BuildContext context) {
+              //             return const WebViewAndroid();
+              //           }));
+              //         })),
+
               Flexible(
                   child: FutureBuilder(
                     future: ApiBannerAds.fetchBannerAds(),
