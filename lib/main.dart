@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_style/component/test_permission_handler.dart';
 import 'package:text_style/login.dart';
 // import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: (login != true) ? const MenuApps() : const LoginApp(),
+        //home: TestPermission(),
         initialRoute: '/',
         routes: {
           '/login': (context) => const LoginApp(),

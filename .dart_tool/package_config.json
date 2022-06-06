@@ -140,6 +140,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_inappwebview",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.4.3+7",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
       "packageUri": "lib/",
@@ -590,7 +596,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-06-04T04:44:14.452304Z",
+  "generated": "2022-06-06T08:59:48.485759Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

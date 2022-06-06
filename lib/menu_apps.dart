@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,19 +26,12 @@ class MenuApps extends StatefulWidget {
 }
 
 class _MenuAppsState extends State<MenuApps> {
-  _MenuAppsState(this._permission);
   late String getEmail;
-
-  final Permission? _permission;
-  final PermissionStatus? _permissionStatus = PermissionStatus.denied;
   List<ApiBannerAds>? apiMenudAds;
+
   @override
   void initState() {
     super.initState();
-  }
-
-  void _listenForPermissionStatus() async {
-    final status = await _permission!.status;
   }
 
   Future<void> _launchInBrowser(Uri url) async {
@@ -129,14 +120,14 @@ class _MenuAppsState extends State<MenuApps> {
                                   fontSize: 20,
                                   iconImage: menuApp.logoIcon,
                                   onPressed: () {
-                                    // Navigator.push(context, MaterialPageRoute(
-                                    //     builder: (BuildContext context) {
-                                    //   return WebViewAndroid(
-                                    //       url: menuApp.webAppId);
-                                    // }));
-                                    _launchInBrowser(Uri(
-                                        scheme: 'http',
-                                        host: menuApp.webAppId));
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                      return WebViewAndroid(
+                                          url: menuApp.webAppId);
+                                    }));
+                                    // _launchInBrowser(Uri(
+                                    //     scheme: 'http',
+                                    //     host: menuApp.webAppId));
                                   },
                                 );
                               }
@@ -243,19 +234,5 @@ class _MenuAppsState extends State<MenuApps> {
         ],
       ),
     );
-  }
-
-  void checkServiceStatus(
-      BuildContext context, PermissionWithService permission) async {
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text((await permission.serviceStatus).toString())));
-  }
-
-  Future<void> requestPermission(Permission permission) async {
-    final status = await permission.request();
-    setState(() {
-      print(status);
-      _permissionStatus = status;
-    });
   }
 }
