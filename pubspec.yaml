@@ -51,6 +51,7 @@ dependencies:
   webview_flutter: ^3.0.4
   permission_handler: ^9.2.0
   flutter_inappwebview: ^5.4.3+7
+  flutter_webview_plugin: ^0.4.0
 
   
 dev_dependencies:

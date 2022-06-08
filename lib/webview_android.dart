@@ -2,21 +2,25 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:text_style/permission/permission.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Permission.camera.request();
+  await Permission.microphone.request();
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
-
-  runApp(MaterialApp(home: new WebViewAndroid()));
 }
 
 class WebViewAndroid extends StatefulWidget {
+  final String? urlDirect;
+
+  const WebViewAndroid({Key? key, this.urlDirect}) : super(key: key);
   @override
-  _WebViewAndroidState createState() => new _WebViewAndroidState();
+  _WebViewAndroidState createState() => _WebViewAndroidState();
 }
 
 class _WebViewAndroidState extends State<WebViewAndroid> {
@@ -36,7 +40,7 @@ class _WebViewAndroidState extends State<WebViewAndroid> {
       ));
 
   late PullToRefreshController pullToRefreshController;
-  String url = "https://face.sos.co.id/";
+  late String url = widget.urlDirect.toString();
   double progress = 0;
   final urlController = TextEditingController();
 
@@ -53,7 +57,8 @@ class _WebViewAndroidState extends State<WebViewAndroid> {
           webViewController?.reload();
         } else if (Platform.isIOS) {
           webViewController?.loadUrl(
-              urlRequest: URLRequest(url: await webViewController?.getUrl()));
+              urlRequest:
+                  URLRequest(url: Uri.parse(widget.urlDirect.toString())));
         }
       },
     );
@@ -79,16 +84,22 @@ class _WebViewAndroidState extends State<WebViewAndroid> {
               if (url.scheme.isEmpty) {
                 url = Uri.parse("https://www.google.com/search?q=" + value);
               }
-              webViewController?.loadUrl(urlRequest: URLRequest(url: url));
+              webViewController?.loadUrl(
+                  urlRequest:
+                      URLRequest(url: Uri.parse(widget.urlDirect.toString())));
             },
           ),
           Expanded(
             child: Stack(
               children: [
                 InAppWebView(
+                  androidOnGeolocationPermissionsShowPrompt:
+                      (InAppWebViewController controller, String origin) async {
+                    return GeolocationPermissionShowPromptResponse(
+                        origin: origin, allow: true, retain: true);
+                  },
                   key: webViewKey,
-                  initialUrlRequest:
-                      URLRequest(url: Uri.parse("https://face.sos.co.id/")),
+                  initialUrlRequest: URLRequest(url: Uri.parse(url)),
                   initialOptions: options,
                   pullToRefreshController: pullToRefreshController,
                   onWebViewCreated: (controller) {
@@ -96,7 +107,7 @@ class _WebViewAndroidState extends State<WebViewAndroid> {
                   },
                   onLoadStart: (controller, url) {
                     setState(() {
-                      this.url = url.toString();
+                      this.url = widget.urlDirect.toString();
                       urlController.text = this.url;
                     });
                   },
@@ -119,11 +130,9 @@ class _WebViewAndroidState extends State<WebViewAndroid> {
                       "javascript",
                       "about"
                     ].contains(uri.scheme)) {
-                      if (await canLaunch(url)) {
+                      if (await canLaunchUrl(Uri.parse(url))) {
                         // Launch the App
-                        await launch(
-                          url,
-                        );
+                        await launchUrl(Uri.parse(url));
                         // and cancel the request
                         return NavigationActionPolicy.CANCEL;
                       }

@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">https://face.sos.co.id/</domain>
         <trust-anchors>
-            <certificates src="system" />
-            <certificates src="user" />
+            <certificates src="@raw/usertrustrsaaaca" />
         </trust-anchors>
+        <domain includeSubdomains="true">https://face.sos.co.id</domain>
     </domain-config>
-    <!-- <base-config cleartextTrafficPermitted="true">
-        <trust-anchors>
-            <certificates src="system" />
-            <certificates src="user" />
-        </trust-anchors>
-    </base-config> -->
 </network-security-config>

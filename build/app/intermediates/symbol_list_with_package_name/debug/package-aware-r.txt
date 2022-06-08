@@ -907,6 +907,11 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu menu_main
 mipmap ic_launcher
+raw aaacertificateservices
+raw my_ca_bundle
+raw sectigorsadomainvalidationsecureserverca
+raw star_sos_co_id
+raw usertrustrsaaaca
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1355,6 +1360,7 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml filepaths
 xml flutter_image_picker_file_paths
 xml image_share_filepaths
 xml network_security_config
