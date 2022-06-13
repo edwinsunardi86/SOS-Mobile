@@ -120,15 +120,15 @@ class _MenuAppsState extends State<MenuApps> {
                                   fontSize: 20,
                                   iconImage: menuApp.logoIcon,
                                   onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                      return WebViewAndroid(
-                                        urlDirect: menuApp.webAppId,
-                                      );
-                                    }));
-                                    // _launchInBrowser(Uri(
-                                    //     scheme: 'http',
-                                    //     host: menuApp.webAppId));
+                                    // Navigator.push(context, MaterialPageRoute(
+                                    //     builder: (BuildContext context) {
+                                    //   return WebViewAndroid(
+                                    //     urlDirect: menuApp.webAppId,
+                                    //   );
+                                    // }));
+                                    _launchInBrowser(Uri(
+                                        scheme: 'https',
+                                        host: menuApp.webAppId));
                                   },
                                 );
                               }

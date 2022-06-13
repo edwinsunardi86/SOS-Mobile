@@ -83,7 +83,7 @@ class ApiUser {
   // }
 
   static Future<http.MultipartRequest> multiPartRegistrationUser(
-      File? uploadImage,
+      File uploadImage,
       String username,
       String password,
       String email,
@@ -112,7 +112,7 @@ class ApiUser {
       ..fields['no_handphone'] = noHandphone
       ..fields['alamat'] = alamat
       ..files
-          .add(await http.MultipartFile.fromPath('picture', uploadImage!.path));
+          .add(await http.MultipartFile.fromPath('picture', uploadImage.path));
     return request;
   }
 

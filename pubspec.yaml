@@ -48,10 +48,8 @@ dependencies:
   image_picker: ^0.8.5+3
   sliding_up_panel: ^2.0.0+1
   url_launcher: ^6.1.2
-  webview_flutter: ^3.0.4
   permission_handler: ^9.2.0
   flutter_inappwebview: ^5.4.3+7
-  flutter_webview_plugin: ^0.4.0
 
   
 dev_dependencies:
@@ -90,6 +88,7 @@ flutter:
       # - assets/images/banner/banner-03.png
       # - assets/images/banner/banner-05.png
       - assets/images/background/red_grad.png
+      - assets/images/avatar_profile/avatar_profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -11,6 +11,7 @@ import 'package:text_style/component/input_text.dart';
 import 'package:text_style/resend_email_verification.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key, this.title}) : super(key: key);
@@ -43,6 +44,17 @@ class _RegistrationState extends State<Registration> {
   double? _panelHeightOpen = 140;
   double? _panelHeightClosed = 35.0;
   bool _visible = false;
+
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('$path');
+
+    final file = File('${(await getTemporaryDirectory()).path}/$path');
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
+
   @override
   Widget build(BuildContext context) {
     // _panelHeightOpen = MediaQuery.of(context).size.height * .80;
@@ -292,7 +304,7 @@ class _RegistrationState extends State<Registration> {
                                     if (_formKey.currentState!.validate()) {
                                       var req = await ApiUser
                                           .multiPartRegistrationUser(
-                                              imageFile,
+                                              imageFile!,
                                               username.text,
                                               password.text,
                                               email.text,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/API/api_menu_login.dart';
 import 'package:text_style/login.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:text_style/webview_android.dart';
 
 class Sidebar extends StatefulWidget {
   const Sidebar({Key? key}) : super(key: key);
@@ -29,6 +31,12 @@ class _SidebarState extends State<Sidebar> {
         setState(() {});
       });
     });
+  }
+
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch';
+    }
   }
 
   @override
@@ -92,6 +100,29 @@ class _SidebarState extends State<Sidebar> {
                   MaterialPageRoute(builder: (context) => const LoginApp()));
             },
           ),
+          const SizedBox(
+            height: 5,
+          ),
+          ListTile(
+            tileColor: const Color.fromARGB(255, 127, 0, 0),
+            leading: const Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            title: const Text(
+              'Business Card',
+              style: TextStyle(color: Colors.white, fontFamily: "Roboto"),
+            ),
+            onTap: () async {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return WebViewAndroid(
+                  urlDirect:
+                      "http://203.176.177.251/dnc/index4.php?tkn=herman.julianto",
+                );
+              }));
+            },
+          )
         ],
       ),
     );

@@ -34,6 +34,16 @@
         android:label="sos_mobile"
         android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true" >
+        <provider
+            android:name="com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider"
+            android:authorities="com.example.sos_mobile.flutter_inappwebview.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
             android:name="com.example.sos_mobile.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -67,31 +77,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <provider
-            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-            android:authorities="com.example.sos_mobile.flutter.image_provider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/flutter_image_picker_file_paths" />
-        </provider>
-
-        <activity
-            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.sos_mobile.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-
         <activity
             android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
@@ -124,6 +109,21 @@
         <meta-data
             android:name="io.flutter.embedded_views_preview"
             android:value="true" />
+
+        <provider
+            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+            android:authorities="com.example.sos_mobile.flutter.image_provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/flutter_image_picker_file_paths" />
+        </provider>
+
+        <activity
+            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <uses-library
             android:name="androidx.window.extensions"
