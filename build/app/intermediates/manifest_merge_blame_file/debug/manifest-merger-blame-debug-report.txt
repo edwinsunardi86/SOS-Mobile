@@ -32,224 +32,228 @@
 18    <uses-permission android:name="android.permission.AUDIO_CAPTURE" />
 18-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:10:5-72
 18-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:10:22-69
-19
-20    <queries>
-20-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-11:15
-21        <intent>
-21-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-10:18
-22            <action android:name="android.support.customtabs.action.CustomTabsService" />
-22-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-90
-22-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:21-87
-23        </intent>
-24    </queries>
-25    <!--
-26 Flutter needs it to communicate with the running application
-27         to allow setting breakpoints, to provide hot reload, etc.
-28    -->
-29    <application
-30        android:name="android.app.Application"
-30-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:13:9-42
-31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-31-->[androidx.core:core:1.8.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8e86e615f21ac3758e97e94e18045107\core-1.8.0\AndroidManifest.xml:24:18-86
-32        android:debuggable="true"
-32-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:15:9-34
-33        android:icon="@mipmap/ic_launcher"
-33-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:14:9-43
-34        android:label="sos_mobile"
-34-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:12:9-35
-35        android:networkSecurityConfig="@xml/network_security_config"
-35-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:16:9-69
-36        android:usesCleartextTraffic="true" >
-36-->E:\project\sos_mobile\android\app\src\debug\AndroidManifest.xml:6:18-53
-37        <provider
-38            android:name="com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider"
-39            android:authorities="com.example.sos_mobile.flutter_inappwebview.fileprovider"
-40            android:exported="false"
-41            android:grantUriPermissions="true" >
-42            <meta-data
-42-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
-43                android:name="android.support.FILE_PROVIDER_PATHS"
-43-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-44                android:resource="@xml/provider_paths" />
-44-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
-45        </provider>
-46
-47        <activity
-47-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:28:9-48:20
-48            android:name="com.example.sos_mobile.MainActivity"
-48-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:29:13-41
-49            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-49-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:33:13-163
-50            android:exported="true"
-50-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:30:13-36
-51            android:hardwareAccelerated="true"
-51-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:34:13-47
-52            android:launchMode="singleTop"
-52-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:31:13-43
-53            android:theme="@style/LaunchTheme"
-53-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:32:13-47
-54            android:windowSoftInputMode="adjustResize" >
-54-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:35:13-55
-55
-56            <!--
-57                 Specifies an Android theme to apply to this Activity as soon as
-58                 the Android process has started. This theme is visible to the user
-59                 while the Flutter UI initializes. After that, this theme continues
-60                 to determine the Window background behind the Flutter UI.
-61            -->
-62            <meta-data
-62-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:40:13-43:17
-63                android:name="io.flutter.embedding.android.NormalTheme"
-63-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:41:15-70
-64                android:resource="@style/NormalTheme" />
-64-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:42:15-52
-65
-66            <intent-filter>
-66-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:44:13-47:29
-67                <action android:name="android.intent.action.MAIN" />
-67-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:45:17-68
-67-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:45:25-66
-68
-69                <category android:name="android.intent.category.LAUNCHER" />
-69-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:46:17-76
-69-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:46:27-74
-70            </intent-filter>
-71        </activity>
-72        <!--
-73 Don't delete the meta-data below.
-74             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-75        -->
-76        <meta-data
-76-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:51:9-53:33
-77            android:name="flutterEmbedding"
-77-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:52:13-44
-78            android:value="2" />
-78-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:53:13-30
-79
-80        <activity
-80-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-18:47
-81            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
-81-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-104
-82            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
-82-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-137
-83            android:exported="true"
-83-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-36
-84            android:theme="@style/AppTheme" />
-84-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-44
-85        <activity
-85-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-22:55
-86            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
-86-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-112
-87            android:exported="true"
-87-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-36
-88            android:theme="@style/ThemeTransparent" />
-88-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-52
-89        <activity
-89-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-26:55
-90            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
-90-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-106
-91            android:exported="true"
-91-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:25:13-36
-92            android:theme="@style/ThemeTransparent" />
-92-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-52
-93        <activity
-93-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:55
-94            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
-94-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-126
-95            android:exported="true"
-95-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-36
-96            android:launchMode="singleInstance"
-96-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-48
-97            android:theme="@style/ThemeTransparent" />
-97-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-52
-98        <activity
-98-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:32:9-36:55
-99            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
-99-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-120
-100            android:exported="true"
-100-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:34:13-36
-101            android:launchMode="singleInstance"
-101-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:35:13-48
-102            android:theme="@style/ThemeTransparent" />
-102-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-52
-103
-104        <receiver
-104-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:38:9-41:40
-105            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
-105-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-111
-106            android:enabled="true"
-106-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-35
-107            android:exported="false" />
-107-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-37
-108
-109        <meta-data
-109-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:43:9-45:36
-110            android:name="io.flutter.embedded_views_preview"
-110-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:44:13-61
-111            android:value="true" />
-111-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-33
-112
-113        <provider
-113-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
-114            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-114-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
-115            android:authorities="com.example.sos_mobile.flutter.image_provider"
-115-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
-116            android:exported="false"
-116-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
-117            android:grantUriPermissions="true" >
-117-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
-118            <meta-data
-118-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
-119                android:name="android.support.FILE_PROVIDER_PATHS"
-119-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-120                android:resource="@xml/flutter_image_picker_file_paths" />
-120-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
-121        </provider>
-122
-123        <activity
-123-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
-124            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-124-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
-125            android:exported="false"
-125-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
-126            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-126-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
-127
-128        <uses-library
-128-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-129            android:name="androidx.window.extensions"
-129-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-130            android:required="false" />
-130-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-131        <uses-library
-131-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-132            android:name="androidx.window.sidecar"
-132-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-133            android:required="false" />
-133-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-134
-135        <provider
-135-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-136            android:name="androidx.startup.InitializationProvider"
-136-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-137            android:authorities="com.example.sos_mobile.androidx-startup"
-137-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
-138            android:exported="false" >
-138-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
-139            <meta-data
-139-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-140                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-140-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
-141                android:value="androidx.startup" />
-141-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
-142            <meta-data
-142-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-143                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-143-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-144                android:value="androidx.startup" />
-144-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-145        </provider>
-146    </application>
-147
-148</manifest>
+19    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+19-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:11:5-79
+19-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:11:22-77
+20
+21    <queries>
+21-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-11:15
+22        <intent>
+22-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-10:18
+23            <action android:name="android.support.customtabs.action.CustomTabsService" />
+23-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-90
+23-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:9:21-87
+24        </intent>
+25    </queries>
+26    <!--
+27 Flutter needs it to communicate with the running application
+28         to allow setting breakpoints, to provide hot reload, etc.
+29    -->
+30    <application
+31        android:name="android.app.Application"
+31-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:15:9-42
+32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+32-->[androidx.core:core:1.8.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8e86e615f21ac3758e97e94e18045107\core-1.8.0\AndroidManifest.xml:24:18-86
+33        android:debuggable="true"
+33-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:17:9-34
+34        android:icon="@mipmap/ic_launcher"
+34-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:16:9-43
+35        android:label="sos_mobile"
+35-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:14:9-35
+36        android:networkSecurityConfig="@xml/network_security_config"
+36-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:18:9-69
+37        android:usesCleartextTraffic="true" >
+37-->E:\project\sos_mobile\android\app\src\debug\AndroidManifest.xml:6:18-53
+38        <provider
+39            android:name="com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider"
+40            android:authorities="com.example.sos_mobile.flutter_inappwebview.fileprovider"
+41            android:exported="false"
+42            android:grantUriPermissions="true"
+43            android:requestLegacyExternalStorage="true" >
+44            <meta-data
+44-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+45                android:name="android.support.FILE_PROVIDER_PATHS"
+45-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+46                android:resource="@xml/provider_paths" />
+46-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+47        </provider>
+48
+49        <activity
+49-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:31:9-51:20
+50            android:name="com.example.sos_mobile.MainActivity"
+50-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:32:13-41
+51            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+51-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:36:13-163
+52            android:exported="true"
+52-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:33:13-36
+53            android:hardwareAccelerated="true"
+53-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:37:13-47
+54            android:launchMode="singleTop"
+54-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:34:13-43
+55            android:theme="@style/LaunchTheme"
+55-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:35:13-47
+56            android:windowSoftInputMode="adjustResize" >
+56-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:38:13-55
+57
+58            <!--
+59                 Specifies an Android theme to apply to this Activity as soon as
+60                 the Android process has started. This theme is visible to the user
+61                 while the Flutter UI initializes. After that, this theme continues
+62                 to determine the Window background behind the Flutter UI.
+63            -->
+64            <meta-data
+64-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:43:13-46:17
+65                android:name="io.flutter.embedding.android.NormalTheme"
+65-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:44:15-70
+66                android:resource="@style/NormalTheme" />
+66-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:45:15-52
+67
+68            <intent-filter>
+68-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:47:13-50:29
+69                <action android:name="android.intent.action.MAIN" />
+69-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:48:17-68
+69-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:48:25-66
+70
+71                <category android:name="android.intent.category.LAUNCHER" />
+71-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:49:17-76
+71-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:49:27-74
+72            </intent-filter>
+73        </activity>
+74        <!--
+75 Don't delete the meta-data below.
+76             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+77        -->
+78        <meta-data
+78-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:54:9-56:33
+79            android:name="flutterEmbedding"
+79-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:55:13-44
+80            android:value="2" />
+80-->E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:56:13-30
+81
+82        <activity
+82-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:14:9-18:47
+83            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+83-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-104
+84            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+84-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-137
+85            android:exported="true"
+85-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-36
+86            android:theme="@style/AppTheme" />
+86-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:18:13-44
+87        <activity
+87-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-22:55
+88            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+88-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-112
+89            android:exported="true"
+89-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-36
+90            android:theme="@style/ThemeTransparent" />
+90-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-52
+91        <activity
+91-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-26:55
+92            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
+92-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-106
+93            android:exported="true"
+93-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:25:13-36
+94            android:theme="@style/ThemeTransparent" />
+94-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-52
+95        <activity
+95-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-31:55
+96            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+96-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-126
+97            android:exported="true"
+97-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-36
+98            android:launchMode="singleInstance"
+98-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-48
+99            android:theme="@style/ThemeTransparent" />
+99-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-52
+100        <activity
+100-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:32:9-36:55
+101            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+101-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-120
+102            android:exported="true"
+102-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:34:13-36
+103            android:launchMode="singleInstance"
+103-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:35:13-48
+104            android:theme="@style/ThemeTransparent" />
+104-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-52
+105
+106        <receiver
+106-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:38:9-41:40
+107            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
+107-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-111
+108            android:enabled="true"
+108-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-35
+109            android:exported="false" />
+109-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-37
+110
+111        <meta-data
+111-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:43:9-45:36
+112            android:name="io.flutter.embedded_views_preview"
+112-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:44:13-61
+113            android:value="true" />
+113-->[:flutter_inappwebview] E:\project\sos_mobile\build\flutter_inappwebview\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-33
+114
+115        <provider
+115-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+116            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+116-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+117            android:authorities="com.example.sos_mobile.flutter.image_provider"
+117-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+118            android:exported="false"
+118-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+119            android:grantUriPermissions="true" >
+119-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+120            <meta-data
+120-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+121                android:name="android.support.FILE_PROVIDER_PATHS"
+121-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+122                android:resource="@xml/flutter_image_picker_file_paths" />
+122-->[:image_picker_android] E:\project\sos_mobile\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+123        </provider>
+124
+125        <activity
+125-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+126            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+126-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+127            android:exported="false"
+127-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+128            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+128-->[:url_launcher_android] E:\project\sos_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+129
+130        <uses-library
+130-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+131            android:name="androidx.window.extensions"
+131-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+132            android:required="false" />
+132-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+133        <uses-library
+133-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+134            android:name="androidx.window.sidecar"
+134-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+135            android:required="false" />
+135-->[androidx.window:window:1.0.0-beta04] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\03c633e46d75bfb21f082f0417f55161\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+136
+137        <provider
+137-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+138            android:name="androidx.startup.InitializationProvider"
+138-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+139            android:authorities="com.example.sos_mobile.androidx-startup"
+139-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+140            android:exported="false" >
+140-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+141            <meta-data
+141-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+142                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+142-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+143                android:value="androidx.startup" />
+143-->[androidx.emoji2:emoji2:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\8d120aa649c2aed370574c7028952cac\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+144            <meta-data
+144-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+145                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+145-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+146                android:value="androidx.startup" />
+146-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\2dd7e1e94a0e65810db6291100ebf315\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+147        </provider>
+148    </application>
+149
+150</manifest>

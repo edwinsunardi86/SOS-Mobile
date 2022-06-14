@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:text_style/API/api_banner_ads.dart';
 import 'package:text_style/component/sidebar.dart';
-import 'package:text_style/webview_android.dart';
 import 'component/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:text_style/component/custom_background.dart';
@@ -11,7 +10,6 @@ import 'API/api_menu_apps.dart';
 import 'package:text_style/get_domain_ip.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const MenuApps());

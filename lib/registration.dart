@@ -26,7 +26,7 @@ class _RegistrationState extends State<Registration> {
   SharedPreferences? logindata;
   final _formKey = GlobalKey<FormState>();
 
-  File? imageFile;
+  File? imageFile = null;
   TextEditingController fullname = TextEditingController();
   TextEditingController noHandphone = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -44,16 +44,6 @@ class _RegistrationState extends State<Registration> {
   double? _panelHeightOpen = 140;
   double? _panelHeightClosed = 35.0;
   bool _visible = false;
-
-  Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load('$path');
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    await file.writeAsBytes(byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    return file;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +139,8 @@ class _RegistrationState extends State<Registration> {
                                                     image: NetworkImage(
                                                         "https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png"),
                                                   )
-                                                : Image.file(imageFile!,
+                                                : Image.file(
+                                                    imageFile ?? File(''),
                                                     isAntiAlias: true,
                                                     filterQuality:
                                                         FilterQuality.high,
@@ -304,7 +295,7 @@ class _RegistrationState extends State<Registration> {
                                     if (_formKey.currentState!.validate()) {
                                       var req = await ApiUser
                                           .multiPartRegistrationUser(
-                                              imageFile!,
+                                              imageFile ?? File(''),
                                               username.text,
                                               password.text,
                                               email.text,

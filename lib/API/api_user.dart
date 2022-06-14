@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-
+import 'package:http_parser/http_parser.dart';
 import 'package:text_style/get_domain_ip.dart';
 
 class ApiUser {
@@ -83,7 +85,7 @@ class ApiUser {
   // }
 
   static Future<http.MultipartRequest> multiPartRegistrationUser(
-      File uploadImage,
+      File? uploadImage,
       String username,
       String password,
       String email,
@@ -103,6 +105,27 @@ class ApiUser {
     //   'alamat': alamat
     // };
     String apiUrl = getDomainIpStatic.ipStatic + "api/store_user";
+    var multiPartFile = http.MultipartFile.fromBytes(
+        'file',
+        (await rootBundle
+                .load('assets/images/avatar_profile/avatar_profile.png'))
+            .buffer
+            .asUint8List(),
+        filename: 'avatar_profile.png',
+        contentType: MediaType('image', 'jpg'));
+    // var uploadFile = uploadImage?.exists();
+    late dynamic upload;
+
+    // var uploadFileImage = uploadImage!.exists().then((value) {
+    //   upload = uploadImage.path;
+    // }).onError((error, stackTrace) {
+    //   upload = multiPartFile;
+    // });
+    if (uploadImage!.path != "") {
+      upload = await http.MultipartFile.fromPath('picture', uploadImage.path);
+    } else {
+      upload = multiPartFile;
+    }
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl))
       ..fields['username'] = username
       ..fields['password'] = password
@@ -111,8 +134,7 @@ class ApiUser {
       ..fields['no_ktp'] = noKtp
       ..fields['no_handphone'] = noHandphone
       ..fields['alamat'] = alamat
-      ..files
-          .add(await http.MultipartFile.fromPath('picture', uploadImage.path));
+      ..files.add(upload);
     return request;
   }
 
