@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:text_style/permission/permission.dart';
 import 'package:text_style/login.dart';
-// import 'package:text_style/menu_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:text_style/menu_apps.dart';
 import 'package:text_style/registration.dart';
-import 'package:text_style/resend_email_verification.dart';
+import 'package:text_style/list_business_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,7 +60,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: (login != true) ? const MenuApps() : const LoginApp(),
-        //home: TestPermission(),
+        // home: const BusinessCardList(),
         initialRoute: '/',
         routes: {
           '/login': (context) => const LoginApp(),

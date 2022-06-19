@@ -10,6 +10,7 @@ import 'API/api_menu_apps.dart';
 import 'package:text_style/get_domain_ip.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:text_style/list_business_card.dart';
 
 void main() {
   runApp(const MenuApps());
@@ -87,6 +88,18 @@ class _MenuAppsState extends State<MenuApps> {
                       fontSize: 20,
                       iconImage: '',
                       onPressed: () {},
+                    ),
+                    CustomButtonGradient(
+                      inputText: 'Business Card',
+                      fontFamily: 'Roboto',
+                      fontSize: 20,
+                      iconImage: '',
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return const BusinessCardList();
+                        }));
+                      },
                     ),
                     FutureBuilder(
                       future: ApiMenuApps.fetchMenuApps(),
