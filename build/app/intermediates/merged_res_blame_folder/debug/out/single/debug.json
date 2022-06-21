@@ -1,54 +1,54 @@
 [
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\xml\\network_security_config.xml"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_aaacertificateservices.crt.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\raw\\aaacertificateservices.crt"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\xml\\network_security_config.xml"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_usertrustrsaaaca.crt.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\raw\\usertrustrsaaaca.crt"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_launch_background.xml.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_my_ca_bundle.ca-bundle.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\raw\\my_ca_bundle.ca-bundle"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_usertrustrsaaaca.crt.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\raw\\usertrustrsaaaca.crt"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_sectigorsadomainvalidationsecureserverca.crt.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\raw\\sectigorsadomainvalidationsecureserverca.crt"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_my_ca_bundle.ca-bundle.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\raw\\my_ca_bundle.ca-bundle"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_launch_background.xml.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_star_sos_co_id.crt.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\raw\\star_sos_co_id.crt"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_aaacertificateservices.crt.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\raw\\aaacertificateservices.crt"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_sectigorsadomainvalidationsecureserverca.crt.flat",
-        "source": "D:\\edwin_budiyanto_sunardi\\project\\SOS-Mobile\\android\\app\\src\\main\\res\\raw\\sectigorsadomainvalidationsecureserverca.crt"
+        "merged": "E:\\project\\sos_mobile\\build\\app\\intermediates\\res\\merged\\debug\\raw_star_sos_co_id.crt.flat",
+        "source": "E:\\project\\sos_mobile\\android\\app\\src\\main\\res\\raw\\star_sos_co_id.crt"
     }
 ]

@@ -53,7 +53,7 @@ class CustomButtonGradient extends StatelessWidget {
                     iconImage != ""
                         ? CachedNetworkImage(
                             imageUrl: getDomainIpStatic.ipStatic +
-                                "storage/images/logo_icon/" +
+                                "images/logo_icon/" +
                                 iconImage!,
                             progressIndicatorBuilder: (_, url, download) {
                               if (download.progress != null) {
