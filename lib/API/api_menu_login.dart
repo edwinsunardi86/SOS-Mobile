@@ -7,6 +7,7 @@ class ApiLogin {
   final String? email;
   final String? password;
   final String? fullname;
+  final String? filename;
   final String? emailVerifiedAt;
 
   ApiLogin(
@@ -14,6 +15,7 @@ class ApiLogin {
       this.email,
       this.password,
       this.fullname,
+      this.filename,
       this.emailVerifiedAt});
 
   factory ApiLogin.createPostLogin(Map<String, dynamic> object) {
@@ -22,6 +24,7 @@ class ApiLogin {
         email: object['email'] ?? "",
         password: object['password'] ?? "",
         fullname: object['fullname'] ?? "",
+        filename: object['filename'] ?? "",
         emailVerifiedAt: object['email_verified_at'] ?? "");
   }
 

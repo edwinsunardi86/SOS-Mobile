@@ -37,7 +37,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\as
 		INJECTED from E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml
 		ADDED from E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:15:9-42
 provider#com.pichillilorenzo.flutter_inappwebview.InAppWebViewFileProvider
-INJECTED from E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:21:9-30:12
+INJECTED from E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml:21:9-30:20
 	android:authorities
 		INJECTED from E:\project\sos_mobile\android\app\src\main\AndroidManifest.xml
 manifest

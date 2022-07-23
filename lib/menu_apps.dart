@@ -83,12 +83,14 @@ class _MenuAppsState extends State<MenuApps> {
                 child: Column(
                   children: [
                     CustomButtonGradient(
-                      inputText: 'Karyawan Baru',
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      iconImage: '',
-                      onPressed: () {},
-                    ),
+                        inputText: 'Karyawan Baru',
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                        iconImage: '',
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, '/info_vacancy');
+                        }),
                     CustomButtonGradient(
                       inputText: 'Business Card',
                       fontFamily: 'Roboto',

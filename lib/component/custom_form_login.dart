@@ -180,6 +180,10 @@ class _CustomFormLoginState extends State<CustomFormLogin> {
                                   .then((value) {
                                 setState(() {
                                   apiLogin = value;
+                                  logindata!.setString(
+                                      'foto', value.filename.toString());
+                                  logindata!.setString(
+                                      'fullname', value.fullname.toString());
                                 });
                               });
                               await showDialog(
