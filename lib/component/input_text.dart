@@ -184,30 +184,6 @@ class InputDatePicker extends StatelessWidget {
   }
 }
 
-class InputDropDown extends StatefulWidget {
-  const InputDropDown({Key? key}) : super(key: key);
-
-  @override
-  State<InputDropDown> createState() => _InputDropDownState();
-}
-
-class _InputDropDownState extends State<InputDropDown> {
-  String dropdownValue = '';
-  //List<DropdownMenuItem<String>>? items;
-  List<String>? items;
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      items: <String>items.map((e) => null),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-        });
-      },
-    );
-  }
-}
 // class InputTextDatePicker extends StatefulWidget {
 //   final TextEditingController? controller;
 //   final bool? obscureText;
